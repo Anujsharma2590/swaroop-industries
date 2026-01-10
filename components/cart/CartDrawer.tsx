@@ -53,21 +53,21 @@ export default function CartDrawer() {
   };
 
   const generateWhatsAppMessage = () => {
-    let message = `*🛒 PRODUCT INQUIRY - ${siteConfig.name}*\n`;
+    let message = `*🛒PRODUCT INQUIRY - ${siteConfig.name}*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
     
     // Customer Details
-    message += `*📋 CUSTOMER DETAILS*\n`;
+    message += `*CUSTOMER DETAILS*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `👤 Name: ${formData.name}\n`;
-    message += `📱 Phone: ${formData.phone}\n`;
-    if (formData.email) message += `📧 Email: ${formData.email}\n`;
-    if (formData.company) message += `🏢 Company: ${formData.company}\n`;
-    if (formData.city) message += `📍 City: ${formData.city}\n`;
+    message += `Name: ${formData.name}\n`;
+    message += `Phone: ${formData.phone}\n`;
+    if (formData.email) message += `Email: ${formData.email}\n`;
+    if (formData.company) message += `Company: ${formData.company}\n`;
+    if (formData.city) message += `City: ${formData.city}\n`;
     message += `\n`;
     
     // Products
-    message += `*📦 PRODUCTS INTERESTED IN*\n`;
+    message += `*PRODUCTS INTERESTED IN*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
     
     items.forEach((item, index) => {
@@ -85,7 +85,7 @@ export default function CartDrawer() {
     
     // Additional Message
     if (formData.message) {
-      message += `*💬 ADDITIONAL MESSAGE*\n`;
+      message += `*ADDITIONAL MESSAGE*\n`;
       message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
       message += `${formData.message}\n\n`;
     }
@@ -168,7 +168,7 @@ export default function CartDrawer() {
                     <div className={styles.emptyCart}>
                       <ShoppingBag className="h-16 w-16" />
                       <h3>Your cart is empty</h3>
-                      <p>Add products you're interested in to send an inquiry</p>
+                      <p>Add products you&apos;re interested in to send an inquiry</p>
                       <Link 
                         href="/products" 
                         className={styles.browseButton}
