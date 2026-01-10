@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, Mail, ChevronDown, ArrowRight, MapPin, Globe } from "lucide-react";
 import { navigationConfig } from "@/config/navigation.config";
 import { siteConfig } from "@/config/site.config";
+import CartButton from "@/components/cart/CartButton";
 import styles from "./Header.module.scss";
 
 export default function Header() {
@@ -187,8 +188,9 @@ export default function Header() {
             })}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <div className={styles.ctaButtons}>
+            <CartButton />
             <Link href="/inquiry" className={styles.ctaButton}>
               <span>Get Quote</span>
               <ArrowRight className="h-4 w-4" />

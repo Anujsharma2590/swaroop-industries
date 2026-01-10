@@ -5,7 +5,8 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/config/products.config";
-import { ArrowRight, ArrowUpRight, Package } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Package, ShoppingBag, Check } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 import styles from "./ProductGrid.module.scss";
 
 // Icon mapping for product categories
@@ -77,42 +78,7 @@ export default function ProductGrid({
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.08 }}
             >
-              <Link href={`/products/${product.slug}`} className={styles.productCard}>
-                <div className={styles.cardInner}>
-                  {/* Image Area */}
-                  <div className={styles.imageWrapper}>
-                    <div className={styles.imagePlaceholder}>
-                      <span className={styles.productIcon}>
-                        {categoryIcons[product.name] || "📦"}
-                      </span>
-                    </div>
-                    <div className={styles.imageOverlay}>
-                      <span className={styles.viewText}>
-                        View Details
-                        <ArrowUpRight className="h-4 w-4" />
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className={styles.content}>
-                    <span className={styles.category}>{product.category}</span>
-                    <h3 className={styles.productName}>{product.name}</h3>
-                    <p className={styles.productDescription}>{product.description}</p>
-                  </div>
-
-                  {/* Footer */}
-                  <div className={styles.cardFooter}>
-                    <span className={styles.learnMore}>
-                      Learn More
-                      <ArrowRight className="h-4 w-4" />
-                    </span>
-                  </div>
-                </div>
-
-                {/* Hover Effect */}
-                <div className={styles.cardGlow} />
-              </Link>
+              <ProductCard product={product} />
             </motion.div>
           ))}
         </div>
@@ -135,5 +101,77 @@ export default function ProductGrid({
         )}
       </div>
     </section>
+  );
+}
+
+// Separate ProductCard component for cart functionality
+function ProductCard({ product }: { product: Product }) {
+  const { addToCart, isInCart } = useCart();
+  const inCart = isInCart(product.id);
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+  };
+
+  return (
+    <div className={styles.productCard}>
+      <Link href={`/products/${product.slug}`} className={styles.cardLink}>
+        <div className={styles.cardInner}>
+          {/* Image Area */}
+          <div className={styles.imageWrapper}>
+            <div className={styles.imagePlaceholder}>
+              <span className={styles.productIcon}>
+                {categoryIcons[product.name] || "📦"}
+              </span>
+            </div>
+            <div className={styles.imageOverlay}>
+              <span className={styles.viewText}>
+                View Details
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </div>
+          </div>
+
+          {/* Content */}
+          <div className={styles.content}>
+            <span className={styles.category}>{product.category}</span>
+            <h3 className={styles.productName}>{product.name}</h3>
+            <p className={styles.productDescription}>{product.description}</p>
+          </div>
+
+          {/* Footer */}
+          <div className={styles.cardFooter}>
+            <span className={styles.learnMore}>
+              Learn More
+              <ArrowRight className="h-4 w-4" />
+            </span>
+          </div>
+        </div>
+      </Link>
+
+      {/* Add to Cart Button */}
+      <button 
+        className={`${styles.addToCartButton} ${inCart ? styles.inCart : ""}`}
+        onClick={handleAddToCart}
+        aria-label={inCart ? "Added to cart" : "Add to cart"}
+      >
+        {inCart ? (
+          <>
+            <Check className="h-4 w-4" />
+            <span>Added</span>
+          </>
+        ) : (
+          <>
+            <ShoppingBag className="h-4 w-4" />
+            <span>Add to Inquiry</span>
+          </>
+        )}
+      </button>
+
+      {/* Card Glow */}
+      <div className={styles.cardGlow} />
+    </div>
   );
 }

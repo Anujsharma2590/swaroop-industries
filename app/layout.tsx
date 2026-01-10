@@ -3,6 +3,8 @@ import { DM_Sans, Outfit } from "next/font/google";
 import "./globals.scss";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CartDrawer from "@/components/cart/CartDrawer";
+import { CartProvider } from "@/contexts/CartContext";
 import { siteConfig } from "@/config/site.config";
 
 const dmSans = DM_Sans({ 
@@ -62,9 +64,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${dmSans.variable} ${outfit.variable} font-sans antialiased`}>
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );
