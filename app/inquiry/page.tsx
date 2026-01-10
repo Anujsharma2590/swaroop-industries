@@ -54,7 +54,7 @@ export default function InquiryPage() {
           >
             <h1 className={styles.title}>Send Inquiry</h1>
             <p className={styles.description}>
-              Interested in our products? Send us an inquiry and we'll get back to you with a quote.
+              Interested in our products? Send us an inquiry and we&apos;ll get back to you with a quote.
             </p>
           </motion.div>
         </div>

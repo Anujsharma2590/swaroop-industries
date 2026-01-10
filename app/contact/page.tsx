@@ -57,7 +57,7 @@ export default function ContactPage() {
             <span className={styles.badge}>Contact Us</span>
             <h1 className={styles.title}>Get In Touch</h1>
             <p className={styles.description}>
-              Have a question or need a quote? We're here to help with all your automotive component needs.
+              Have a question or need a quote? We&apos;re here to help with all your automotive component needs.
             </p>
           </motion.div>
         </div>

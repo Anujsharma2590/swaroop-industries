@@ -165,7 +165,7 @@ export default function CartPage() {
             >
               <ShoppingBag className="h-20 w-20" />
               <h2>Your cart is empty</h2>
-              <p>Add products you're interested in to send an inquiry</p>
+              <p>Add products you&apos;re interested in to send an inquiry</p>
               <Link href="/products" className={styles.browseButton}>
                 <Package className="h-5 w-5" />
                 Browse Products
