@@ -1,0 +1,49 @@
+{
+  "name": "swaroop-industries",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-dialog": "^1.1.1",
+    "@radix-ui/react-dropdown-menu": "^2.1.1",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-select": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@mui/material": "^5.16.7",
+    "@mui/icons-material": "^5.16.7",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "swiper": "^11.1.9",
+    "framer-motion": "^11.3.19",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.4.0",
+    "lucide-react": "^0.424.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.4",
+    "sass": "^1.77.8",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.18",
+    "tailwindcss": "^3.4.7",
+    "tailwindcss-animate": "^1.0.7",
+    "postcss": "^8.4.40",
+    "autoprefixer": "^10.4.20"
+  },
+  "overrides": {
+    "glob": "^10.4.6"
+  }
+}
