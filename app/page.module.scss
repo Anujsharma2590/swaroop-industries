@@ -69,13 +69,13 @@
   width: 56px;
   height: 56px;
   border-radius: 14px;
-  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(25 95% 45%) 100%);
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(94 46% 50%) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   margin-bottom: 1.5rem;
-  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 8px 20px rgba(147, 201, 103, 0.3);
 }
 
 // CTA Banner
@@ -125,18 +125,18 @@
   align-items: center;
   gap: 0.5rem;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(25 95% 45%) 100%);
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(94 46% 50%) 100%);
   color: white;
   font-weight: 600;
   font-size: 1rem;
   border-radius: 12px;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 4px 20px rgba(147, 201, 103, 0.4);
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.5);
+    box-shadow: 0 8px 30px rgba(147, 201, 103, 0.5);
   }
 }
 
@@ -168,6 +168,6 @@
   transform: translate(-50%, -50%);
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(147, 201, 103, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }

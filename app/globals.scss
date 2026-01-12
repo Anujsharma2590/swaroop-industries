@@ -6,28 +6,28 @@
 
 @layer base {
   :root {
-    // Premium color palette - inspired by TE Connectivity & Amphenol
+    // Premium color palette - Saroop Industries Brand Colors
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 217 100% 18%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 217 100% 18%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 217 100% 18%;
     
-    // Primary - Deep Navy Blue
-    --primary: 222 47% 11%;
+    // Primary - Saroop Deep Blue (#00235a)
+    --primary: 217 100% 18%;
     --primary-foreground: 0 0% 100%;
     
     // Secondary - Light gray
     --secondary: 210 20% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary-foreground: 217 100% 18%;
     
-    // Accent - Vibrant Orange (TE Connectivity style)
-    --accent: 25 95% 53%;
-    --accent-foreground: 0 0% 100%;
+    // Accent - Saroop Green (#93c967)
+    --accent: 94 46% 60%;
+    --accent-foreground: 217 100% 18%;
     
-    // Highlight - Electric Blue
-    --highlight: 211 100% 50%;
+    // Highlight - Lighter Green
+    --highlight: 94 55% 50%;
     --highlight-foreground: 0 0% 100%;
     
     --muted: 210 20% 96%;
@@ -36,35 +36,35 @@
     --destructive-foreground: 0 0% 100%;
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 25 95% 53%;
+    --ring: 94 46% 60%;
     --radius: 0.5rem;
 
     // Custom accent colors
-    --gold: 45 93% 47%;
-    --copper: 24 85% 55%;
-    --steel: 210 14% 40%;
+    --green-light: 94 55% 70%;
+    --green-dark: 94 46% 45%;
+    --blue-light: 217 80% 35%;
   }
 
   .dark {
-    --background: 222 47% 8%;
+    --background: 217 100% 8%;
     --foreground: 210 20% 98%;
-    --card: 222 47% 11%;
+    --card: 217 100% 12%;
     --card-foreground: 210 20% 98%;
-    --popover: 222 47% 11%;
+    --popover: 217 100% 12%;
     --popover-foreground: 210 20% 98%;
-    --primary: 25 95% 53%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
+    --primary: 94 46% 60%;
+    --primary-foreground: 217 100% 18%;
+    --secondary: 217 50% 17%;
     --secondary-foreground: 210 20% 98%;
-    --muted: 217 33% 17%;
+    --muted: 217 50% 17%;
     --muted-foreground: 215 20% 65%;
-    --accent: 25 95% 53%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 94 46% 60%;
+    --accent-foreground: 217 100% 18%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 20% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 25 95% 53%;
+    --border: 217 50% 17%;
+    --input: 217 50% 17%;
+    --ring: 94 46% 60%;
   }
 }
 
@@ -257,7 +257,7 @@ html {
   
   &:hover {
     @apply transform -translate-y-1;
-    box-shadow: 0 10px 40px rgba(249, 115, 22, 0.4);
+    box-shadow: 0 10px 40px rgba(147, 201, 103, 0.4);
     
     &::before {
       @apply opacity-10;

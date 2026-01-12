@@ -89,7 +89,7 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 
     .iconWrapper {
-      background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(25 95% 45%) 100%);
+      background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(94 46% 50%) 100%);
       color: white;
       transform: scale(1.1);
     }
@@ -123,7 +123,7 @@
 .highlight {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background: rgba(249, 115, 22, 0.1);
+  background: rgba(147, 201, 103, 0.1);
   color: hsl(var(--accent));
   font-weight: 600;
   font-size: 0.75rem;
@@ -195,10 +195,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(25 95% 45%) 100%);
+  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(94 46% 50%) 100%);
   color: white;
   flex-shrink: 0;
-  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+  box-shadow: 0 10px 30px rgba(147, 201, 103, 0.3);
 }
 
 .visualText {
@@ -254,7 +254,7 @@
   transform: translateY(-50%);
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(147, 201, 103, 0.2) 0%, transparent 70%);
   filter: blur(40px);
   pointer-events: none;
 }
@@ -274,7 +274,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(249, 115, 22, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(147, 201, 103, 0.05) 0%, transparent 70%);
 }
 
 .decorCircle2 {

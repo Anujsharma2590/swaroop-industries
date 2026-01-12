@@ -51,7 +51,7 @@ const stats = [
     suffix: "+",
     label: "Years of Excellence",
     description: "Industry experience",
-    color: "#f97316",
+    color: "#93c967",
   },
   {
     icon: Package,

@@ -102,7 +102,7 @@ const config = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-pattern': 'linear-gradient(135deg, hsl(222 47% 8%) 0%, hsl(222 47% 15%) 100%)',
+        'hero-pattern': 'linear-gradient(135deg, hsl(217 100% 8%) 0%, hsl(217 100% 15%) 100%)',
       },
     },
   },

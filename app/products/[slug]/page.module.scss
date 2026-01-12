@@ -24,7 +24,7 @@
     right: -20%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(147, 201, 103, 0.15) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(60px);
   }
@@ -50,7 +50,7 @@
   display: inline-block;
   font-size: 4rem;
   margin-bottom: 1rem;
-  filter: drop-shadow(0 4px 20px rgba(249, 115, 22, 0.3));
+  filter: drop-shadow(0 4px 20px rgba(147, 201, 103, 0.3));
 }
 
 .title {
@@ -76,11 +76,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(249, 115, 22, 0.15);
-  border: 1px solid rgba(249, 115, 22, 0.3);
+  background: rgba(147, 201, 103, 0.15);
+  border: 1px solid rgba(147, 201, 103, 0.3);
   padding: 0.5rem 1rem;
   border-radius: 9999px;
-  color: #f97316;
+  color: #93c967;
   font-weight: 500;
 }
 
@@ -97,7 +97,7 @@
     transition: color 0.2s;
     
     &:hover {
-      color: #f97316;
+      color: #93c967;
     }
   }
   
@@ -143,7 +143,7 @@
   transition: all 0.3s ease;
   
   &:hover {
-    border-color: #f97316;
+    border-color: #93c967;
     transform: translateY(-2px);
   }
   
@@ -163,7 +163,7 @@
   
   .count {
     font-size: 0.75rem;
-    color: #f97316;
+    color: #93c967;
     font-weight: 500;
   }
 }
@@ -194,7 +194,7 @@
   height: 100%;
   
   &:hover {
-    border-color: #f97316;
+    border-color: #93c967;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     transform: translateY(-4px);
     
@@ -203,7 +203,7 @@
     }
     
     .viewDetails {
-      color: #f97316;
+      color: #93c967;
       gap: 0.75rem;
     }
   }
@@ -227,7 +227,7 @@
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
-    background: linear-gradient(135deg, #f97316, #ea580c);
+    background: linear-gradient(135deg, #93c967, #7ab94e);
     color: white;
     font-size: 0.7rem;
     font-weight: 600;
@@ -263,8 +263,8 @@
 
 .subcategoryTag {
   display: inline-block;
-  background: rgba(249, 115, 22, 0.1);
-  color: #f97316;
+  background: rgba(147, 201, 103, 0.1);
+  color: #93c967;
   font-size: 0.75rem;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
@@ -381,7 +381,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.1), transparent 50%);
+    background: radial-gradient(circle at top right, rgba(147, 201, 103, 0.1), transparent 50%);
   }
   
   .productIconLarge {
@@ -393,7 +393,7 @@
     position: absolute;
     top: 1.5rem;
     left: 1.5rem;
-    background: linear-gradient(135deg, #f97316, #ea580c);
+    background: linear-gradient(135deg, #93c967, #7ab94e);
     color: white;
     font-size: 0.8rem;
     font-weight: 600;
@@ -427,8 +427,8 @@
 }
 
 .category {
-  background: rgba(249, 115, 22, 0.15);
-  color: #f97316;
+  background: rgba(147, 201, 103, 0.15);
+  color: #93c967;
 }
 
 .subcategory {
@@ -486,7 +486,7 @@
     border-bottom: 1px solid var(--border);
     
     svg {
-      color: #f97316;
+      color: #93c967;
     }
   }
 }
@@ -565,7 +565,7 @@
   transition: all 0.3s ease;
   
   &:hover {
-    border-color: #f97316;
+    border-color: #93c967;
     transform: translateY(-4px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   }
