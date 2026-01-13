@@ -32,4 +32,12 @@ export const testimonials: Testimonial[] = [
     comment: "I get quality parts for a good price and they usually are readily available. Usually if no one else can get me the parts they can. I have seen over the years the ways that they are trying to be the go to shop with the best quality parts.",
     image: "/images/testimonials/testimonial-3.jpg",
   },
+  {
+    id: "4",
+    name: "Nimish Sikka",
+    location: "New Delhi",
+    rating: 5,
+    comment: "I get quality parts for a good price and they usually are readily available. Usually if no one else can get me the parts they can. I have seen over the years the ways that they are trying to be the go to shop with the best quality parts.",
+    image: "/images/testimonials/testimonial-3.jpg",
+  },
 ];
