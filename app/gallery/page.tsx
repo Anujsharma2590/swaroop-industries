@@ -1,84 +1,43 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
 import Image from "next/image";
-import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import Lightbox from "yet-another-react-lightbox";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/plugins/captions.css";
+import { ZoomIn } from "lucide-react";
 import { galleryImages, galleryCategories, type GalleryCategory } from "@/config/gallery.config";
 import styles from "./page.module.scss";
 
+
 export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState<GalleryCategory>("All");
-  const [lightboxImage, setLightboxImage] = useState<number | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number>(-1);
 
-  const filteredImages = selectedCategory === "All"
-    ? galleryImages
-    : galleryImages.filter(img => img.category === selectedCategory);
+  const filteredImages = useMemo(() => 
+    selectedCategory === "All"
+      ? galleryImages
+      : galleryImages.filter(img => img.category === selectedCategory),
+    [selectedCategory]
+  );
 
-  const currentImageIndex = lightboxImage !== null 
-    ? filteredImages.findIndex(img => img.id === lightboxImage)
-    : -1;
-
-  const handlePrevious = () => {
-    if (currentImageIndex > 0) {
-      setLightboxImage(filteredImages[currentImageIndex - 1].id);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentImageIndex < filteredImages.length - 1) {
-      setLightboxImage(filteredImages[currentImageIndex + 1].id);
-    }
-  };
-
-  const handleDragEnd = (event: any, info: any) => {
-    const swipeThreshold = 50;
-    if (info.offset.x > swipeThreshold) {
-      handlePrevious();
-    } else if (info.offset.x < -swipeThreshold) {
-      handleNext();
-    }
-    
-    // Check for pull down to close
-    if (info.offset.y > 100) {
-      setLightboxImage(null);
-    }
-  };
-
-  const currentImage = filteredImages[currentImageIndex];
-
-  // Keyboard navigation for lightbox
-  useEffect(() => {
-    if (lightboxImage === null) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setLightboxImage(null);
-      } else if (e.key === "ArrowLeft") {
-        handlePrevious();
-      } else if (e.key === "ArrowRight") {
-        handleNext();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [lightboxImage, currentImageIndex]);
-
-  // Prevent body scroll when lightbox is open
-  useEffect(() => {
-    if (lightboxImage !== null) {
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    };
-  }, [lightboxImage]);
+  const slides = useMemo(() => 
+    filteredImages.map(img => ({
+      src: img.imageUrl,
+      alt: img.title,
+      width: 1200,
+      height: 900,
+      title: img.title,
+      description: img.description,
+    })),
+    [filteredImages]
+  );
 
   return (
     <div className={styles.galleryPage}>
@@ -141,7 +100,7 @@ export default function GalleryPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
                 className={styles.galleryItem}
-                onClick={() => setLightboxImage(image.id)}
+                onClick={() => setLightboxIndex(index)}
               >
                 <div className={styles.imageWrapper}>
                   <Image
@@ -168,76 +127,53 @@ export default function GalleryPage() {
       </section>
 
       {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxImage !== null && currentImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className={styles.lightbox}
-            onClick={() => setLightboxImage(null)}
-          >
-            <button
-              className={styles.closeButton}
-              onClick={() => setLightboxImage(null)}
-            >
-              <X />
-            </button>
-
-            {currentImageIndex > 0 && (
-              <button
-                className={`${styles.navButton} ${styles.prevButton}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevious();
-                }}
-              >
-                <ChevronLeft />
-              </button>
-            )}
-
-            {currentImageIndex < filteredImages.length - 1 && (
-              <button
-                className={`${styles.navButton} ${styles.nextButton}`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNext();
-                }}
-              >
-                <ChevronRight />
-              </button>
-            )}
-
-            <div className={styles.imageCounter}>
-              {currentImageIndex + 1} / {filteredImages.length}
-            </div>
-
-            <motion.div
-              key={currentImage.id}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1, x: 0 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              drag
-              dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-              dragElastic={0.2}
-              onDragEnd={handleDragEnd}
-              className={styles.lightboxContent}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className={styles.lightboxImageWrapper}>
-                <Image
-                  src={currentImage.imageUrl}
-                  alt={currentImage.title}
-                  fill
-                  sizes="90vw"
-                  className={styles.lightboxImage}
-                  priority
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Lightbox
+        open={lightboxIndex >= 0}
+        close={() => setLightboxIndex(-1)}
+        index={lightboxIndex}
+        slides={slides}
+        plugins={[Thumbnails, Zoom, Fullscreen, Captions]}
+        thumbnails={{
+          position: "bottom",
+          width: 120,
+          height: 80,
+          border: 2,
+          borderRadius: 8,
+          padding: 0,
+          gap: 16,
+          showToggle: true,
+        }}
+        zoom={{
+          maxZoomPixelRatio: 3,
+          zoomInMultiplier: 2,
+          doubleTapDelay: 300,
+          doubleClickDelay: 300,
+          doubleClickMaxStops: 2,
+          keyboardMoveDistance: 50,
+          wheelZoomDistanceFactor: 100,
+          pinchZoomDistanceFactor: 100,
+          scrollToZoom: true,
+        }}
+        captions={{
+          showToggle: true,
+          descriptionTextAlign: "center",
+        }}
+        styles={{
+          container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
+        }}
+        controller={{
+          closeOnBackdropClick: true,
+          closeOnPullDown: true,
+        }}
+        carousel={{
+          finite: false,
+          preload: 2,
+        }}
+        animation={{
+          fade: 250,
+          swipe: 250,
+        }}
+      />
     </div>
   );
 }
