@@ -69,11 +69,14 @@ export default function GalleryPage() {
   useEffect(() => {
     if (lightboxImage !== null) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [lightboxImage]);
 
@@ -100,66 +103,66 @@ export default function GalleryPage() {
 
       {/* Gallery Section */}
       <section className={styles.gallery}>
-        <div className="container mx-auto px-4 py-12 sm:py-16">
-          {/* Category Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className={styles.filters}
-          >
-            {galleryCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`${styles.filterButton} ${selectedCategory === category ? styles.active : ""}`}
-              >
-                {category}
-                {category !== "All" && (
-                  <span className={styles.count}>
-                    {galleryImages.filter(img => img.category === category).length}
-                  </span>
-                )}
-              </button>
-            ))}
-          </motion.div>
+        {/* Category Filters */}
+        <div className={styles.filtersWrapper}>
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className={styles.filters}
+            >
+              {galleryCategories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`${styles.filterButton} ${selectedCategory === category ? styles.active : ""}`}
+                >
+                  {category}
+                  {category !== "All" && (
+                    <span className={styles.count}>
+                      {galleryImages.filter(img => img.category === category).length}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </motion.div>
+          </div>
+        </div>
 
+        <div className="container mx-auto px-4 pb-12 sm:pb-16">
           {/* Gallery Grid */}
           <div className={styles.galleryGrid}>
-            <AnimatePresence mode="popLayout">
-              {filteredImages.map((image, index) => (
-                <motion.div
-                  key={image.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.4, delay: index * 0.03 }}
-                  className={styles.galleryItem}
-                  onClick={() => setLightboxImage(image.id)}
-                >
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={image.imageUrl}
-                      alt={image.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={styles.image}
-                    />
-                    <div className={styles.imageOverlay}>
-                      <div className={styles.overlayContent}>
-                        <ZoomIn className={styles.zoomIcon} />
-                        <h3 className={styles.imageTitle}>{image.title}</h3>
-                        {image.description && (
-                          <p className={styles.imageDescription}>{image.description}</p>
-                        )}
-                      </div>
+            {filteredImages.map((image, index) => (
+              <motion.div
+                key={image.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+                className={styles.galleryItem}
+                onClick={() => setLightboxImage(image.id)}
+              >
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src={image.imageUrl}
+                    alt={image.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className={styles.image}
+                  />
+                  <div className={styles.imageOverlay}>
+                    <div className={styles.overlayContent}>
+                      <ZoomIn className={styles.zoomIcon} />
+                      <h3 className={styles.imageTitle}>{image.title}</h3>
+                      {image.description && (
+                        <p className={styles.imageDescription}>{image.description}</p>
+                      )}
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
