@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['saroopindustries.com'],
+    domains: ['saroopindustries.com', 'images.unsplash.com'],
     unoptimized: false,
   },
   sassOptions: {
