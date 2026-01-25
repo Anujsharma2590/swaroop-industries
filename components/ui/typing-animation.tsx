@@ -20,31 +20,37 @@ export function TypingAnimation({
   const [i, setI] = useState<number>(0);
 
   useEffect(() => {
-    const typingEffect = setInterval(() => {
-      if (i < text.length) {
-        setDisplayedText(text.substring(0, i + 1));
-        setI(i + 1);
-      } else {
-        clearInterval(typingEffect);
-      }
+    setDisplayedText("");
+    setI(0);
+  }, [text]);
+
+  useEffect(() => {
+    if (i >= text.length) return;
+
+    const typingTimeout = window.setTimeout(() => {
+      const next = i + 1;
+      setDisplayedText(text.substring(0, next));
+      setI(next);
     }, duration);
 
     return () => {
-      clearInterval(typingEffect);
+      window.clearTimeout(typingTimeout);
     };
   }, [duration, i, text]);
 
   return (
     <Component
       className={cn(
-        "font-display text-center text-4xl font-bold leading-[5rem] tracking-[-0.02em] drop-shadow-sm",
+        "relative block",
         className
       )}
     >
-      {displayedText || text}
-      {i < text.length && (
-        <span className="animate-pulse">|</span>
-      )}
+      {/* Preserve final layout to avoid reflow while typing */}
+      <span className="invisible block whitespace-pre-wrap">{text}</span>
+      <span className="absolute inset-0 block whitespace-pre-wrap">
+        {displayedText}
+        {i < text.length && <span className="animate-pulse">|</span>}
+      </span>
     </Component>
   );
 }
