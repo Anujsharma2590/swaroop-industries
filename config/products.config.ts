@@ -274,7 +274,7 @@ export const productCategories: ProductCategory[] = [
     name: "Wire & Cables",
     slug: "wire-cables",
     description: "High-quality automotive wires and cables including auto cables, battery cables, and speaker wires.",
-    icon: "🔌",
+    image: "/category/wire_and_cables.png",
     products: wireProducts,
     subcategories: [
       { 
@@ -305,7 +305,7 @@ export const productCategories: ProductCategory[] = [
     name: "Brass Terminals",
     slug: "brass-terminal",
     description: "Precision-engineered brass terminals including Ring, Fork, Bullet, and various series terminals.",
-    icon: "⚡",
+    image: "/category/brass_terminal.png",
     products: brassTerminalProducts,
     subcategories: [
       { id: "ring-series", name: "Ring Series", slug: "ring-series", description: "Ring terminals for secure connections", products: brassTerminalProducts.filter(p => p.subcategory === "Ring Series") },
@@ -330,7 +330,7 @@ export const productCategories: ProductCategory[] = [
     name: "Electrical Components",
     slug: "electrical-components",
     description: "Complete range of automotive electrical components including switches, relays, flashers, and tuners.",
-    icon: "⚙️",
+    image: "/category/electrical_components.png",
     products: [...switchProducts, ...flasherProducts, ...relayProducts, ...tunerProducts],
     subcategories: [
       { id: "switches", name: "Switches", slug: "switches", description: "Automotive switches", products: switchProducts },
@@ -344,7 +344,7 @@ export const productCategories: ProductCategory[] = [
     name: "Holders & Connectors",
     slug: "holders-connectors",
     description: "Comprehensive range of connector holders and automotive connectors for various applications.",
-    icon: "🔗",
+    image: "/category/holders_connectors.png",
     products: [...holderProducts, ...connectorProducts, ...jointerHolderProducts],
     subcategories: [
       { id: "holders", name: "Holders", slug: "holders", description: "Connector holders", products: holderProducts },
@@ -357,7 +357,7 @@ export const productCategories: ProductCategory[] = [
     name: "Fuse Boxes & Wiring",
     slug: "fuse-boxes",
     description: "Fuse boxes for various vehicle makes and models.",
-    icon: "📦",
+    image: "/category/fuse_boxes.png",
     products: fuseBoxProducts,
     subcategories: [
       { id: "fuse-boxes", name: "Fuse Boxes", slug: "fuse-boxes-cat", description: "Vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Fuse Box") },
@@ -369,7 +369,7 @@ export const productCategories: ProductCategory[] = [
     name: "Battery Accessories",
     slug: "battery-accessories",
     description: "Complete range of battery accessories including cable sets, jumper cables, charging clips, and earthing wires.",
-    icon: "🔋",
+    image: "/category/battery_accessories.png",
     products: [...insulationTapeProducts, ...batteryCableSetProducts, ...jumperCableProducts, ...earthingWireProducts, ...chargingClipProducts],
     subcategories: [
       { id: "insulation-tape", name: "Insulation Tape", slug: "insulation-tape", description: "PVC insulation tape", products: insulationTapeProducts },
@@ -384,7 +384,7 @@ export const productCategories: ProductCategory[] = [
     name: "Fuses",
     slug: "fuses",
     description: "Complete range of automotive and electrical fuses including Standard, Mini, Maxi, Midi, Mega, ANL, and specialty fuses for all applications.",
-    icon: "⚡",
+    image: "/category/fuses.png",
     products: [...standardFuseProducts, ...miniFuseProducts, ...slowBlowFemaleFuseProducts, ...glassFuseProducts, ...slowBlowMaleFuseProducts, ...midiFuseProducts, ...megaFuseProducts, ...anlFuseProducts, ...boltDownFuseProducts, ...maxiFuseProducts],
     subcategories: [
       { id: "standard-fuse", name: "Standard Fuse", slug: "standard-fuse", description: "Standard blade fuses", products: standardFuseProducts },
@@ -404,7 +404,7 @@ export const productCategories: ProductCategory[] = [
     name: "Terminal Caps & Plastic Components",
     slug: "terminal-caps",
     description: "Dip moulding terminal caps, housing caps, and protective covers for all terminal series and vehicle-specific applications.",
-    icon: "🛡️",
+    image: "/category/terminal_caps.png",
     products: [...terminalCapProducts, ...terminal0250CapProducts, ...terminal0312CapProducts, ...terminal0110_0187CapProducts, ...vehicleSpecificCapProducts, ...twoWheelerHousingCapProducts, ...multiWheelerCapProducts],
     subcategories: [
       { id: "bullet-caps", name: "Bullet Series Caps", slug: "bullet-series-caps", description: "Caps for bullet terminals", products: terminalCapProducts },
@@ -421,7 +421,7 @@ export const productCategories: ProductCategory[] = [
     name: "Cable Management & Protection",
     slug: "cable-management",
     description: "Complete cable management solutions including rubber grommets, seals, corrugated pipes, flexible conduits, and cable glands.",
-    icon: "🔧",
+    image: "/category/cable_management.png",
     products: [...rubberGrommetProducts, ...wireSealProducts, ...corrugatedPipeProducts, ...flexibleConduitProducts, ...pgGlandProducts, ...metricGlandProducts],
     subcategories: [
       { id: "rubber-grommet", name: "Rubber Grommets", slug: "rubber-grommets", description: "Wire passage grommets", products: rubberGrommetProducts },
@@ -437,7 +437,7 @@ export const productCategories: ProductCategory[] = [
     name: "Heat Shrink & Protective Sleeves",
     slug: "heat-shrink-sleeves",
     description: "Comprehensive range of heat shrink sleeves, busbar sleeves, PVC sleeves, and insulation tapes for all wire protection needs.",
-    icon: "🔥",
+    image: "/category/heat_shrink_sleeves.png",
     products: [...heatShrinkSleeveProducts, ...busbarSleeveProducts, ...pvcSleeveProducts, ...pvcCottonTapeProducts],
     subcategories: [
       { id: "heat-shrink-sleeve", name: "Heat Shrink Sleeves", slug: "heat-shrink-sleeves-sub", description: "Heat shrink tubes (0.6mm-180mm)", products: heatShrinkSleeveProducts },
@@ -451,7 +451,7 @@ export const productCategories: ProductCategory[] = [
     name: "Universal Holders",
     slug: "universal-holders",
     description: "Premium universal holders with deluxe wire for all vehicle types. Available in 0250, 090, 0110 series for various terminal configurations.",
-    icon: "🔌",
+    image: "/category/universal_holders.png",
     products: [...holder0250SeriesProducts, ...holder090SeriesProducts, ...holder090Sealed_0110SeriesProducts, ...holder0110SpecialShutterProducts, ...holder090PBTSeriesProducts, ...holder090WaterProofProducts],
     subcategories: [
       { id: "0250-series-holders", name: "0250 Series Holders", slug: "0250-series-holders", description: "6.3mm terminal holders with deluxe wire", products: holder0250SeriesProducts },
@@ -467,7 +467,7 @@ export const productCategories: ProductCategory[] = [
     name: "Complete Fuse Box Systems",
     slug: "fuse-boxes-complete",
     description: "Complete range of fuse boxes for all vehicle types including Square, Maruti, Universal, and Glass fuse boxes with premium Saroop Deluxe Wire.",
-    icon: "📦",
+    image: "/category/fuse_boxes_complete.png",
     products: [...squareFuseBoxProducts, ...marutiFuseBoxCarProducts, ...marutiFuseBoxVanProducts, ...glassFuseBoxProducts, ...universalFuseBoxProducts],
     subcategories: [
       { id: "square-fuse-box", name: "Square Fuse Box", slug: "square-fuse-box", description: "Tata, Ashok Leyland, Eicher fuse boxes", products: squareFuseBoxProducts },
@@ -482,7 +482,7 @@ export const productCategories: ProductCategory[] = [
     name: "JCB Connectors & Fuse Boxes",
     slug: "jcb-connectors",
     description: "Complete range of JCB connectors and fuse boxes for construction and agricultural equipment. Premium quality with deluxe wire.",
-    icon: "🚜",
+    image: "/category/jcb_connectors.png",
     products: [...jcbConnectorProducts, ...jcbConnectorAlternativeProducts, ...jcbHighPoleConnectorProducts, ...jcbFuseBoxProducts],
     subcategories: [
       { id: "jcb-standard", name: "JCB Standard Connectors", slug: "jcb-standard-connectors", description: "2-12 pole JCB connectors", products: jcbConnectorProducts },
@@ -496,7 +496,7 @@ export const productCategories: ProductCategory[] = [
     name: "Head Light Relay Wiring Harness",
     slug: "headlight-wiring",
     description: "Complete head light relay wiring harness kits with and without relay. Universal fit for all vehicles with various holder and fuse configurations.",
-    icon: "💡",
+    image: "/category/headlight_wiring.png",
     products: [...headlightWiringWithoutRelayProducts, ...headlightWiringWithRelayProducts],
     subcategories: [
       { id: "headlight-without-relay", name: "Without Relay", slug: "headlight-wiring-without-relay", description: "Head light wiring without relay", products: headlightWiringWithoutRelayProducts },
@@ -508,7 +508,7 @@ export const productCategories: ProductCategory[] = [
     name: "Special Universal Connectors",
     slug: "special-universal-connectors",
     description: "Comprehensive range of vehicle-specific connectors for sensors, injectors, lights, and electrical systems. Compatible with Tata, Maruti, Mahindra, Ashok Leyland, and more.",
-    icon: "🔗",
+    image: "/category/special_universal_connectors.png",
     products: [
       ...specialConnector1PoleProducts,
       ...specialConnector2PoleUniversalProducts,
@@ -543,7 +543,7 @@ export const productCategories: ProductCategory[] = [
     name: "ECM Connectors",
     slug: "ecm-connectors",
     description: "High-density ECM (Engine Control Module) connectors for Ashok Leyland and Tata vehicles. 24-94 pole configurations with ECM special wire. 15 inch long wire for heavy commercial vehicles.",
-    icon: "🖥️",
+    image: "/category/ecm_connectors.png",
     products: [...ecmConnectorProducts],
     subcategories: [
       { id: "ecm-high-density", name: "ECM High Density", slug: "ecm-high-density-connectors", description: "24-94 pole ECM connectors with 15\" wire", products: ecmConnectorProducts },
@@ -554,7 +554,7 @@ export const productCategories: ProductCategory[] = [
     name: "Jointer Holders & Relay With Base",
     slug: "jointer-holders-relay",
     description: "Complete range of jointer holders for wire splicing and relay with base kits (4-pin & 5-pin, 12V & 24V) with deluxe wire.",
-    icon: "🔌",
+    image: "/category/jointer_holders_relay.png",
     products: [...jointerHolderSpecialProducts, ...relay4PinProducts, ...relay5PinProducts, ...relay24VProducts],
     subcategories: [
       { id: "jointer-holders", name: "Jointer Holders", slug: "jointer-holders", description: "Wire splice & joint holders", products: jointerHolderSpecialProducts },
@@ -567,7 +567,7 @@ export const productCategories: ProductCategory[] = [
     name: "Flasher & Relay Base Connectors",
     slug: "flasher-relay-base",
     description: "Flasher and relay base connectors for all vehicle types. 3-15 pole configurations for flashers, AC relays, micro relays, and universal relay bases.",
-    icon: "⚡",
+    image: "/category/flasher_relay_base.png",
     products: [...flasherRelayBase3_4PoleProducts, ...flasherRelayBase5PoleProducts, ...relayBaseHeadLampAdditionalProducts],
     subcategories: [
       { id: "flasher-3-4-pole", name: "3 & 4 Pole Flasher/Relay", slug: "flasher-relay-3-4-pole", description: "Flasher & 4 pole relay base", products: flasherRelayBase3_4PoleProducts },
@@ -580,7 +580,7 @@ export const productCategories: ProductCategory[] = [
     name: "Sensor & Lamp Holders",
     slug: "sensor-lamp-holders",
     description: "Complete range of sensor holders, head lamp holders, JPT connectors, super sealed connectors, and single fuse connectors for all automotive applications.",
-    icon: "💡",
+    image: "/category/sensor_lamp_holders.png",
     products: [...headLampSensorHolderProducts, ...jptSensorProducts, ...superSealedConnectorProducts, ...sensorConnectorProducts, ...singleFuseConnectorProducts, ...combinationFuseSetProducts],
     subcategories: [
       { id: "headlamp-sensor", name: "Head Lamp Holders", slug: "headlamp-sensor-holders", description: "3 pole head lamp & sensor holders (ceramic, bakelite, melamine)", products: headLampSensorHolderProducts },
@@ -595,7 +595,7 @@ export const productCategories: ProductCategory[] = [
     name: "Round Connectors",
     slug: "round-connectors",
     description: "Round style connectors for Maruti, Jeep, E-Rickshaw, and fan motor applications. 1-4 pole configurations.",
-    icon: "⭕",
+    image: "/category/round_connectors.png",
     products: [...roundConnectorProducts],
     subcategories: [
       { id: "round-1-4-pole", name: "Round Connectors", slug: "round-connectors-1-4-pole", description: "1-4 pole round connectors for various vehicles", products: roundConnectorProducts },
@@ -606,7 +606,7 @@ export const productCategories: ProductCategory[] = [
     name: "Special Holders",
     slug: "special-holders",
     description: "Special holders for Ashok Leyland and Tata new models. High pole count configurations (2-24 pole) with deluxe wire.",
-    icon: "🔧",
+    image: "/category/special_holders.png",
     products: [...specialHolderNewModelProducts],
     subcategories: [
       { id: "new-model-holders", name: "New Model Holders", slug: "new-model-holders", description: "Ashok Leyland & Tata new model special holders", products: specialHolderNewModelProducts },

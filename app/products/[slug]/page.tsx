@@ -33,11 +33,15 @@ export default function ProductPage({ params }: PageProps) {
     return (
       <div className={styles.categoryPage}>
         {/* Category Hero */}
-        <section className={styles.hero}>
+        <section className={`${styles.hero} ${category.image ? styles.heroWithImage : ''}`}>
           <div className={styles.heroBackground}>
+            {category.image && (
+              <div className={styles.heroImage} style={{ backgroundImage: `url(${category.image})` }} />
+            )}
+            <div className={styles.heroOverlay} />
             <div className={styles.heroGlow} />
           </div>
-          <div className="container mx-auto px-4 py-12">
+          <div className="container mx-auto px-4 py-16">
             <Button variant="ghost" asChild className={styles.backButton}>
               <Link href="/products">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -50,7 +54,6 @@ export default function ProductPage({ params }: PageProps) {
               transition={{ duration: 0.6 }}
               className={styles.heroContent}
             >
-              <span className={styles.categoryIcon}>{category.icon}</span>
               <h1 className={styles.title}>{category.name}</h1>
               <p className={styles.description}>{category.description}</p>
               <div className={styles.stats}>

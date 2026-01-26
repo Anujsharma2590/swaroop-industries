@@ -37,7 +37,6 @@ export interface ProductCategory {
   slug: string;
   description: string;
   image?: string;
-  icon?: string;
   products: Product[];
   subcategories?: ProductSubcategory[];
 }
