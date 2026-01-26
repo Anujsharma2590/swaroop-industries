@@ -3,12 +3,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { Testimonial } from "@/config/testimonials.config";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 import styles from "./TestimonialsSection.module.scss";
 
 interface TestimonialsSectionProps {
@@ -53,16 +52,12 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Swiper
-            modules={[Pagination, Autoplay, Navigation]}
+            modules={[Pagination, Autoplay]}
             spaceBetween={24}
             slidesPerView={1}
             pagination={{ 
               clickable: true,
               el: `.${styles.customPagination}`,
-            }}
-            navigation={{
-              prevEl: `.${styles.navPrev}`,
-              nextEl: `.${styles.navNext}`,
             }}
             autoplay={{ delay: 6000, disableOnInteraction: false }}
             breakpoints={{
@@ -108,15 +103,9 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
             ))}
           </Swiper>
 
-          {/* Custom Navigation */}
-          <div className={styles.navigation}>
-            <button className={styles.navPrev}>
-              <ChevronLeft className="h-5 w-5" />
-            </button>
+          {/* Custom Pagination */}
+          <div className={styles.paginationWrapper}>
             <div className={styles.customPagination} />
-            <button className={styles.navNext}>
-              <ChevronRight className="h-5 w-5" />
-            </button>
           </div>
         </motion.div>
 

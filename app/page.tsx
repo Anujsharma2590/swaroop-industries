@@ -21,34 +21,6 @@ export default function Home() {
       <FeaturesSection />
       <ProductGrid products={featuredProducts} />
       
-      {/* Mission & Vision Section */}
-      <section className={styles.missionSection}>
-        <div className={styles.missionContainer}>
-          <motion.div
-            className={styles.missionGrid}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className={styles.missionCard}>
-              <div className={styles.missionIcon}>
-                <Target className="h-7 w-7" />
-              </div>
-              <h3>Our Mission</h3>
-              <p>{companyInfo.mission}</p>
-            </div>
-            <div className={styles.missionCard}>
-              <div className={styles.missionIcon}>
-                <Eye className="h-7 w-7" />
-              </div>
-              <h3>Our Vision</h3>
-              <p>{companyInfo.vision}</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       <TestimonialsSection testimonials={testimonials} />
 
       {/* CTA Banner */}
