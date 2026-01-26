@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           <section className={styles.section}>
             <h2>1. Introduction</h2>
             <p>
-              Saroop Industries ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+              Saroop Industries (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
             </p>
           </section>
 
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
           </section>
 
           <section className={styles.section}>
-            <h2>10. Children's Privacy</h2>
+            <h2>10. Children&apos;s Privacy</h2>
             <p>
               Our website and services are not directed to individuals under the age of 18. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.
             </p>
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
           <section className={styles.section}>
             <h2>12. Changes to This Privacy Policy</h2>
             <p>
-              We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated "Last Updated" date. We encourage you to review this policy periodically to stay informed about how we protect your information.
+              We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated &quot;Last Updated&quot; date. We encourage you to review this policy periodically to stay informed about how we protect your information.
             </p>
           </section>
 

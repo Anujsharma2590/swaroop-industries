@@ -21,10 +21,10 @@ export default function TermsPage() {
           <section className={styles.section}>
             <h2>1. Acceptance of Terms</h2>
             <p>
-              Welcome to Saroop Industries. By accessing or using our website, products, or services, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our website or services.
+              Welcome to Saroop Industries. By accessing or using our website, products, or services, you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these Terms, please do not use our website or services.
             </p>
             <p>
-              These Terms constitute a legally binding agreement between you and Saroop Industries ("we," "our," or "us").
+              These Terms constitute a legally binding agreement between you and Saroop Industries (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;).
             </p>
           </section>
 
@@ -268,7 +268,7 @@ export default function TermsPage() {
           <section className={styles.section}>
             <h2>14. Modification of Terms</h2>
             <p>
-              We reserve the right to modify these Terms at any time. Changes will be posted on this page with an updated "Last Updated" date. Your continued use of our website after changes constitutes acceptance of the modified Terms.
+              We reserve the right to modify these Terms at any time. Changes will be posted on this page with an updated &quot;Last Updated&quot; date. Your continued use of our website after changes constitutes acceptance of the modified Terms.
             </p>
           </section>
 
