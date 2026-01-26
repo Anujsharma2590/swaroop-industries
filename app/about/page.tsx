@@ -36,15 +36,12 @@ const Marquee = dynamic(() => import("@/components/ui/marquee").then((m) => m.Ma
   loading: () => <div className="h-20" />,
 });
 const CountUp = dynamic(() => import("react-countup"), { ssr: false, loading: () => <span>0</span> });
-
-// Swiper (still heavy, but now mounted only when in view)
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, A11y } from "swiper/modules";
+const AnimatedList = dynamic(() => import("@/components/ui/animated-list").then((m) => m.AnimatedList), {
+  ssr: false,
+  loading: () => <div className="h-96" />,
+});
 
 import "yet-another-react-lightbox/styles.css";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
 
 // ------------------------------
 // Static data
@@ -364,7 +361,7 @@ export default function AboutPage() {
                 </div>
               </motion.div>
 
-              {/* Certifications carousel (mounted only when in view) */}
+              {/* Certifications animated list (mounted only when in view) */}
               <motion.div
                 initial={{ opacity: 0, x: 28 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -378,16 +375,9 @@ export default function AboutPage() {
                     <p>Internationally recognized quality standards</p>
                   </div>
 
-                  <div className={styles.certCarousel}>
-                    <MountOnView minHeight={380}>
-                      <Swiper
-                        modules={[Navigation, Pagination, A11y]}
-                        spaceBetween={16}
-                        slidesPerView={1}
-                        navigation
-                        pagination={{ clickable: true }}
-                        breakpoints={{ 640: { slidesPerView: 1 } }}
-                      >
+                  <div className={styles.certAnimatedList}>
+                    <MountOnView minHeight={500}>
+                      <AnimatedList delay={2000}>
                         {certifications.map((cert) => {
                           const showLogo = !!cert.logoSrc && !certLogoFailed[cert.name];
                           const canOpen = !!cert.certificateSrc;
@@ -396,43 +386,42 @@ export default function AboutPage() {
                             : -1;
 
                           return (
-                            <SwiperSlide key={cert.name}>
-                              <button
-                                type="button"
-                                className={`${styles.certCard} ${
-                                  canOpen ? styles.certCardClickable : styles.certCardDisabled
-                                }`}
-                                onClick={() => {
-                                  if (slideIndex >= 0) setCertLightboxIndex(slideIndex);
-                                }}
-                                aria-label={canOpen ? `View ${cert.name} certificate` : `${cert.name} certificate not available`}
-                                aria-disabled={!canOpen}
-                              >
-                                <div className={styles.certLogoWrap}>
-                                  {showLogo ? (
-                                    <Image
-                                      src={cert.logoSrc}
-                                      alt={`${cert.name} certification logo`}
-                                      width={64}
-                                      height={64}
-                                      className={styles.certLogo}
-                                      onError={() => markCertLogoFailed(cert.name)}
-                                    />
-                                  ) : (
-                                    <div className={styles.certLogoFallback}>{cert.name}</div>
-                                  )}
-                                </div>
+                            <button
+                              key={cert.name}
+                              type="button"
+                              className={`${styles.certCard} ${
+                                canOpen ? styles.certCardClickable : styles.certCardDisabled
+                              }`}
+                              onClick={() => {
+                                if (slideIndex >= 0) setCertLightboxIndex(slideIndex);
+                              }}
+                              aria-label={canOpen ? `View ${cert.name} certificate` : `${cert.name} certificate not available`}
+                              aria-disabled={!canOpen}
+                            >
+                              <div className={styles.certLogoWrap}>
+                                {showLogo ? (
+                                  <Image
+                                    src={cert.logoSrc}
+                                    alt={`${cert.name} certification logo`}
+                                    width={64}
+                                    height={64}
+                                    className={styles.certLogo}
+                                    onError={() => markCertLogoFailed(cert.name)}
+                                  />
+                                ) : (
+                                  <div className={styles.certLogoFallback}>{cert.name}</div>
+                                )}
+                              </div>
 
-                                <div className={styles.certCardBody}>
-                                  <div className={styles.certName}>{cert.name}</div>
-                                  <div className={styles.certDesc}>{cert.description}</div>
-                                  {!canOpen && <div className={styles.certHint}>Certificate coming soon</div>}
-                                </div>
-                              </button>
-                            </SwiperSlide>
+                              <div className={styles.certCardBody}>
+                                <div className={styles.certName}>{cert.name}</div>
+                                <div className={styles.certDesc}>{cert.description}</div>
+                                {!canOpen && <div className={styles.certHint}>Certificate coming soon</div>}
+                              </div>
+                            </button>
                           );
                         })}
-                      </Swiper>
+                      </AnimatedList>
                     </MountOnView>
                   </div>
                 </div>
