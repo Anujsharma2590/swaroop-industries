@@ -1,3 +1,5 @@
+import { productCategories } from './products.config';
+
 export interface NavItem {
   title: string;
   href: string;
@@ -17,6 +19,11 @@ export const navigationConfig: NavItem[] = [
   {
     title: "Products",
     href: "/products",
+    children: productCategories.map(cat => ({
+      title: cat.name,
+      href: `/products/${cat.slug}`,
+      description: cat.description,
+    })),
   },
   {
     title: "Gallery",

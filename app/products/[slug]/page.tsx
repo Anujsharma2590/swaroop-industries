@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, Package, Phone } from "lucide-react";
 import ProductDetailView from "@/components/products/ProductDetailView";
+import { TypingAnimation } from "@/components/ui/typing-animation";
 import styles from "./page.module.scss";
 
 interface PageProps {
@@ -42,19 +43,18 @@ export default function ProductPage({ params }: PageProps) {
             <div className={styles.heroGlow} />
           </div>
           <div className="container mx-auto px-4 py-16">
-            <Button variant="ghost" asChild className={styles.backButton}>
-              <Link href="/products">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                All Products
-              </Link>
-            </Button>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className={styles.heroContent}
             >
-              <h1 className={styles.title}>{category.name}</h1>
+              <TypingAnimation 
+                text={category.name} 
+                duration={50}
+                className={styles.title}
+                as="h1"
+              />
               <p className={styles.description}>{category.description}</p>
               <div className={styles.stats}>
                 <div className={styles.stat}>

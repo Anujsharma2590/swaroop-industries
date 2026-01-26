@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Phone, Mail, ArrowRight, MapPin, Globe } from "lucide-react";
+import { X, Phone, Mail, ArrowRight, MapPin, Globe, ChevronDown } from "lucide-react";
 import { navigationConfig } from "@/config/navigation.config";
 import { siteConfig } from "@/config/site.config";
 import CartButton from "@/components/cart/CartButton";
@@ -14,6 +14,7 @@ import styles from "./Header.module.scss";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -89,13 +90,57 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className={styles.desktopNav}>
             {navigationConfig.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${styles.navLink} ${pathname === item.href || pathname.startsWith(item.href + '/') ? styles.active : ""}`}
-              >
-                {item.title}
-              </Link>
+              item.children ? (
+                <div
+                  key={item.href}
+                  className={styles.navItemWithDropdown}
+                  onMouseEnter={() => setActiveDropdown(item.title)}
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  <Link
+                    href={item.href}
+                    className={`${styles.navLink} ${pathname === item.href || pathname.startsWith(item.href + '/') ? styles.active : ""}`}
+                  >
+                    {item.title}
+                    <ChevronDown className={styles.chevron} />
+                  </Link>
+                  
+                  <AnimatePresence>
+                    {activeDropdown === item.title && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className={styles.megaMenu}
+                      >
+                        <div className={styles.megaMenuContainer}>
+                          <div className={styles.megaMenuGrid}>
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className={styles.categoryCard}
+                              >
+                                <h4 className={styles.categoryTitle}>{child.title}</h4>
+                                <p className={styles.categoryDesc}>{child.description}</p>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`${styles.navLink} ${pathname === item.href || pathname.startsWith(item.href + '/') ? styles.active : ""}`}
+                >
+                  {item.title}
+                </Link>
+              )
             ))}
           </div>
 
@@ -168,7 +213,22 @@ export default function Header() {
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <span>{item.title}</span>
+                      {item.children && <ChevronDown className={styles.mobileChevron} />}
                     </Link>
+                    {item.children && (
+                      <div className={styles.mobileSubmenu}>
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={styles.mobileSubmenuLink}
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {child.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>

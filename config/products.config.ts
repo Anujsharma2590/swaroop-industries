@@ -360,8 +360,14 @@ export const productCategories: ProductCategory[] = [
     image: "/category/fuse_boxes.png",
     products: fuseBoxProducts,
     subcategories: [
-      { id: "fuse-boxes", name: "Fuse Boxes", slug: "fuse-boxes-cat", description: "Vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Fuse Box") },
-      { id: "headlight-wiring", name: "Headlight Wiring", slug: "headlight-wiring", description: "Headlight relay wiring kits", products: fuseBoxProducts.filter(p => p.subcategory === "Head Light Relay Wiring") },
+      { id: "universal-fuse-box", name: "Universal Fuse Box", slug: "universal-fuse-box", description: "Universal fit fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Universal") },
+      { id: "tata-fuse-box", name: "Tata Fuse Box", slug: "tata-fuse-box", description: "Tata vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Tata") },
+      { id: "mahindra-fuse-box", name: "Mahindra Fuse Box", slug: "mahindra-fuse-box", description: "Mahindra vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Mahindra") },
+      { id: "maruti-fuse-box", name: "Maruti Fuse Box", slug: "maruti-fuse-box", description: "Maruti vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Maruti") },
+      { id: "eicher-fuse-box", name: "Eicher Fuse Box", slug: "eicher-fuse-box", description: "Eicher vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Eicher") },
+      { id: "ashok-leyland-fuse-box", name: "Ashok Leyland Fuse Box", slug: "ashok-leyland-fuse-box", description: "Ashok Leyland vehicle fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Ashok Leyland") },
+      { id: "jcb-fuse-box", name: "JCB Fuse Box", slug: "jcb-fuse-box", description: "JCB equipment fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "JCB") },
+      { id: "glass-fuse-box", name: "Glass Fuse Box", slug: "glass-fuse-box", description: "Glass tube fuse boxes", products: fuseBoxProducts.filter(p => p.subcategory === "Glass Fuse") },
     ],
   },
   {

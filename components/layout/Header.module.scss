@@ -146,6 +146,10 @@
   position: relative;
 }
 
+.navItemWithDropdown {
+  position: relative;
+}
+
 .navLink {
   position: relative;
   display: flex;
@@ -178,19 +182,94 @@
   }
 }
 
+.chevron {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  
+  .navItemWithDropdown:hover & {
+    transform: rotate(180deg);
+  }
+}
+
 // Mega Menu
 .megaMenu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  min-width: 700px;
+  padding-top: 8px;
+  z-index: 100;
+}
+
+.megaMenuContainer {
+  min-width: 800px;
+  max-width: 1000px;
   background: white;
   border-radius: 16px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15),
+  box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15),
               0 0 0 1px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  z-index: 100;
+  padding: 2rem;
+}
+
+.megaMenuGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  max-height: 500px;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #93c967;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #7ab94e;
+    }
+  }
+}
+
+.categoryCard {
+  display: block;
+  padding: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  
+  &:hover {
+    background: rgba(147, 201, 103, 0.08);
+    border-color: rgba(147, 201, 103, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+.categoryTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.375rem;
+  line-height: 1.3;
+}
+
+.categoryDesc {
+  font-size: 0.8125rem;
+  color: hsl(var(--muted-foreground));
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .megaMenuContent {
