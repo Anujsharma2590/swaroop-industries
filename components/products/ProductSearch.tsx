@@ -39,6 +39,7 @@ export default function ProductSearch({
   const [isFocused, setIsFocused] = useState(false);
   const [results, setResults] = useState<SearchResult[]>([]);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -73,56 +74,66 @@ export default function ProductSearch({
     localStorage.removeItem(RECENT_SEARCHES_KEY);
   };
 
-  // Search function
+  // Search function with debouncing
   useEffect(() => {
     if (!value.trim()) {
       setResults([]);
+      setIsSearching(false);
       return;
     }
 
-    const query = value.toLowerCase().trim();
-    const searchResults: SearchResult[] = [];
+    setIsSearching(true);
 
-    // Search in categories
-    productCategories.forEach((category) => {
-      if (
-        category.name.toLowerCase().includes(query) ||
-        category.description.toLowerCase().includes(query)
-      ) {
-        searchResults.push({
-          type: "category",
-          id: category.id,
-          name: category.name,
-          slug: category.slug,
-          description: category.description,
-        });
-      }
-    });
+    // Debounce search by 500ms for smoother experience
+    const debounceTimer = setTimeout(() => {
+      const query = value.toLowerCase().trim();
+      const searchResults: SearchResult[] = [];
 
-    // Search in products
-    allProducts.forEach((product) => {
-      const matchesName = product.name.toLowerCase().includes(query);
-      const matchesDesc = product.description.toLowerCase().includes(query);
-      const matchesCode = product.partNumber?.toLowerCase().includes(query);
-      const matchesTags = product.tags?.some((tag) =>
-        tag.toLowerCase().includes(query)
-      );
+      // Search in categories
+      productCategories.forEach((category) => {
+        if (
+          category.name.toLowerCase().includes(query) ||
+          category.description.toLowerCase().includes(query)
+        ) {
+          searchResults.push({
+            type: "category",
+            id: category.id,
+            name: category.name,
+            slug: category.slug,
+            description: category.description,
+          });
+        }
+      });
 
-      if (matchesName || matchesDesc || matchesCode || matchesTags) {
-        searchResults.push({
-          type: matchesCode ? "code" : "product",
-          id: product.id,
-          name: product.name,
-          slug: product.slug,
-          category: product.category,
-          code: product.partNumber,
-          description: product.description,
-        });
-      }
-    });
+      // Search in products
+      allProducts.forEach((product) => {
+        const matchesName = product.name.toLowerCase().includes(query);
+        const matchesDesc = product.description.toLowerCase().includes(query);
+        const matchesCode = product.partNumber?.toLowerCase().includes(query);
+        const matchesTags = product.tags?.some((tag) =>
+          tag.toLowerCase().includes(query)
+        );
 
-    // Limit results
-    setResults(searchResults.slice(0, 8));
+        if (matchesName || matchesDesc || matchesCode || matchesTags) {
+          searchResults.push({
+            type: matchesCode ? "code" : "product",
+            id: product.id,
+            name: product.name,
+            slug: product.slug,
+            category: product.category,
+            code: product.partNumber,
+            description: product.description,
+          });
+        }
+      });
+
+      // Limit results
+      setResults(searchResults.slice(0, 8));
+      setIsSearching(false);
+    }, 500);
+
+    // Cleanup function to clear timeout if value changes before delay
+    return () => clearTimeout(debounceTimer);
   }, [value]);
 
   // Handle click outside
@@ -218,8 +229,16 @@ export default function ProductSearch({
               </div>
             )}
 
+            {/* Loading State */}
+            {value.trim() && isSearching && (
+              <div className={styles.loadingState}>
+                <div className={styles.spinner}></div>
+                <span>Searching...</span>
+              </div>
+            )}
+
             {/* Search Results */}
-            {value.trim() && results.length > 0 && (
+            {value.trim() && !isSearching && results.length > 0 && (
               <div className={styles.section}>
                 <div className={styles.sectionHeader}>
                   <div className={styles.sectionTitle}>
@@ -267,7 +286,7 @@ export default function ProductSearch({
             )}
 
             {/* No Results */}
-            {value.trim() && results.length === 0 && (
+            {value.trim() && !isSearching && results.length === 0 && (
               <div className={styles.noResults}>
                 <Search className="h-8 w-8" />
                 <p>No products found for &quot;{value}&quot;</p>

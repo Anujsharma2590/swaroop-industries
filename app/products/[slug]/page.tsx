@@ -28,7 +28,6 @@ export default function ProductPage({ params }: PageProps) {
   if (category) {
     // Get featured products in this category
     const featuredProducts = category.products.filter(p => p.featured).slice(0, 4);
-    const allApplications = Array.from(new Set(category.products.flatMap(p => p.applications || []))).slice(0, 8);
     
     // Render category page with all its products
     return (
@@ -70,25 +69,37 @@ export default function ProductPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Subcategories - Horizontal Scroll */}
+        {/* Subcategories - Grid Layout */}
         {category.subcategories && category.subcategories.length > 0 && (
           <section className={styles.subcategoriesSection}>
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-12">
               <div className={styles.subcategoriesHeader}>
                 <h2 className={styles.sectionTitle}>Browse by Subcategory</h2>
+                <p className={styles.sectionDesc}>Explore our specialized {category.name.toLowerCase()} products</p>
               </div>
-              <div className={styles.subcategoriesScroll}>
+              <div className={styles.subcategoriesGrid}>
                 {category.subcategories.map((sub, index) => (
                   <motion.a
                     key={sub.id}
                     href={`/products?category=${category.slug}&subcategory=${sub.slug}`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className={styles.subcategoryChip}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    className={styles.subcategoryCard}
                   >
-                    <span className={styles.subcategoryName}>{sub.name}</span>
-                    <span className={styles.subcategoryCount}>{sub.products.length}</span>
+                    <div className={styles.subcategoryIcon}>
+                      {index % 5 === 0 ? '🔌' : index % 5 === 1 ? '⚡' : index % 5 === 2 ? '🔧' : index % 5 === 3 ? '🔗' : '⚙️'}
+                    </div>
+                    <div className={styles.subcategoryContent}>
+                      <h3 className={styles.subcategoryName}>{sub.name}</h3>
+                      <p className={styles.subcategoryDesc}>{sub.description}</p>
+                      <div className={styles.subcategoryFooter}>
+                        <span className={styles.subcategoryCount}>
+                          {sub.products.length} Products
+                        </span>
+                        <ArrowRight className={styles.subcategoryArrow} />
+                      </div>
+                    </div>
                   </motion.a>
                 ))}
               </div>
@@ -137,25 +148,6 @@ export default function ProductPage({ params }: PageProps) {
           </section>
         )}
 
-        {/* Browse by Application */}
-        {allApplications.length > 0 && (
-          <section className={styles.applicationsSection}>
-            <div className="container mx-auto px-4 py-8">
-              <h2 className={styles.sectionTitle}>Browse by Application</h2>
-              <div className={styles.applicationTags}>
-                {allApplications.map((app) => (
-                  <Link
-                    key={app}
-                    href={`/products?category=${category.slug}&application=${app}`}
-                    className={styles.applicationTag}
-                  >
-                    {app}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
 
         {/* All Products Grid */}
         <section className={styles.products}>

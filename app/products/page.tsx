@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination as SwiperPagination } from "swiper/modules";
 import { allProducts, productCategories, subcategoryToSlug } from "@/config/products.config";
@@ -11,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import "swiper/css";
 import "swiper/css/pagination";
 import { ArrowRight, Filter, SlidersHorizontal, X } from "lucide-react";
-import { useState, useMemo, useTransition } from "react";
+import { useState, useMemo, useTransition, useEffect } from "react";
 import ProductFilters, { FilterState } from "@/components/products/ProductFilters";
 import ProductSearch from "@/components/products/ProductSearch";
 import ProductCardSkeleton from "@/components/products/ProductCardSkeleton";
@@ -40,6 +41,7 @@ function getCategoryIcon(category: string): string {
 }
 
 export default function ProductsPage() {
+  const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("featured");
   const [showMobileFilters, setShowMobileFilters] = useState(false);
@@ -54,6 +56,20 @@ export default function ProductsPage() {
     tags: [],
     applications: [],
   });
+
+  // Initialize filters from URL parameters
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    const subcategoryParam = searchParams.get('subcategory');
+    
+    if (categoryParam || subcategoryParam) {
+      setFilters(prev => ({
+        ...prev,
+        categories: categoryParam ? [categoryParam] : [],
+        subcategories: subcategoryParam ? [subcategoryParam] : [],
+      }));
+    }
+  }, [searchParams]);
 
   // Filter and search products
   const { filteredProducts, totalPages, paginatedProducts } = useMemo(() => {

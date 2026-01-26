@@ -3,12 +3,19 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination as SwiperPagination, Navigation } from "swiper/modules";
 import { Product, ProductCategory } from "@/config/products.config";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Info, Phone, ShoppingBag, Check, Share2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, Info, Phone, ShoppingBag, Check } from "lucide-react";
 import VariantSelector from "./VariantSelector";
 import { useCart } from "@/contexts/CartContext";
 import styles from "./ProductDetailView.module.scss";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 interface ProductDetailViewProps {
   product: Product;
@@ -42,22 +49,7 @@ export default function ProductDetailView({
     <div className={styles.productPage}>
       {/* Product Details */}
       <section className={styles.productDetails}>
-        <div className="container mx-auto px-4 py-8">
-          {/* Breadcrumb */}
-          <nav className={styles.breadcrumb}>
-            <Link href="/products">Products</Link>
-            <span>/</span>
-            {productCategory && (
-              <>
-                <Link href={`/products/${productCategory.slug}`}>
-                  {productCategory.name}
-                </Link>
-                <span>/</span>
-              </>
-            )}
-            <span className={styles.current}>{product.name}</span>
-          </nav>
-
+        <div className="container mx-auto px-4 py-6">
           <div className={styles.productLayout}>
             {/* Product Image Gallery */}
             <motion.div
@@ -66,13 +58,32 @@ export default function ProductDetailView({
               transition={{ duration: 0.6 }}
               className={styles.imageSection}
             >
-              <div className={styles.mainImage}>
-                <span className={styles.productIconLarge}>📦</span>
-                {product.featured && (
-                  <span className={styles.featuredBadge}>⭐ Featured Product</span>
-                )}
-              </div>
-              {/* Image thumbnails can go here in future */}
+              {product.images && product.images.length > 0 ? (
+                <Swiper
+                  modules={[SwiperPagination, Navigation]}
+                  pagination={{ clickable: true }}
+                  navigation={product.images.length > 1}
+                  className={styles.imageSwiper}
+                  spaceBetween={0}
+                  slidesPerView={1}
+                >
+                  {product.images.map((image, imgIndex) => (
+                    <SwiperSlide key={imgIndex}>
+                      <div className={styles.mainImage}>
+                        <img 
+                          src={image} 
+                          alt={`${product.name} - ${imgIndex + 1}`}
+                          className={styles.productImage}
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              ) : (
+                <div className={styles.mainImage}>
+                  <span className={styles.productIconLarge}>📦</span>
+                </div>
+              )}
             </motion.div>
 
             {/* Product Info */}
@@ -166,10 +177,6 @@ export default function ProductDetailView({
                     <Phone className="mr-2 h-5 w-5" />
                     Contact Sales
                   </Link>
-                </Button>
-                <Button size="lg" variant="ghost">
-                  <Share2 className="mr-2 h-5 w-5" />
-                  Share
                 </Button>
               </div>
 
