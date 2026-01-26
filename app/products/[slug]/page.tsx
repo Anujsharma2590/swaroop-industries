@@ -72,7 +72,7 @@ export default function ProductPage({ params }: PageProps) {
         {/* Subcategories - Grid Layout */}
         {category.subcategories && category.subcategories.length > 0 && (
           <section className={styles.subcategoriesSection}>
-            <div className="container mx-auto px-4 py-12">
+            <div className="container mx-auto px-4 py-8">
               <div className={styles.subcategoriesHeader}>
                 <h2 className={styles.sectionTitle}>Browse by Subcategory</h2>
                 <p className={styles.sectionDesc}>Explore our specialized {category.name.toLowerCase()} products</p>

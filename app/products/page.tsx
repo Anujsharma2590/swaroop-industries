@@ -7,11 +7,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination as SwiperPagination } from "swiper/modules";
 import { allProducts, productCategories, subcategoryToSlug } from "@/config/products.config";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { ArrowRight, Filter, SlidersHorizontal, X } from "lucide-react";
+import { ArrowRight, Filter, SlidersHorizontal, X, ChevronDown } from "lucide-react";
 import { useState, useMemo, useTransition, useEffect } from "react";
 import ProductFilters, { FilterState } from "@/components/products/ProductFilters";
 import ProductSearch from "@/components/products/ProductSearch";
@@ -226,16 +233,35 @@ export default function ProductsPage() {
 
                 <div className={styles.toolbarRight}>
                   {/* Sort Dropdown */}
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value as SortOption)}
-                    className={styles.sortSelect}
-                  >
-                    <option value="featured">Featured First</option>
-                    <option value="name">Name (A-Z)</option>
-                    <option value="category">Category</option>
-                    <option value="newest">Newest</option>
-                  </select>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className={styles.sortButton}>
+                        <span>
+                          {sortBy === "featured" && "Featured First"}
+                          {sortBy === "name" && "Name (A-Z)"}
+                          {sortBy === "category" && "Category"}
+                          {sortBy === "newest" && "Newest"}
+                        </span>
+                        <ChevronDown className={styles.chevronIcon} />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className={styles.dropdownContent}>
+                      <DropdownMenuRadioGroup value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
+                        <DropdownMenuRadioItem value="featured">
+                          Featured First
+                        </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="name">
+                          Name (A-Z)
+                        </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="category">
+                          Category
+                        </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem value="newest">
+                          Newest
+                        </DropdownMenuRadioItem>
+                      </DropdownMenuRadioGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
               </div>
 

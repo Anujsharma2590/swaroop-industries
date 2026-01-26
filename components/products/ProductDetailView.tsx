@@ -179,16 +179,6 @@ export default function ProductDetailView({
                   </Link>
                 </Button>
               </div>
-
-              {/* Quick Links */}
-              <div className={styles.quickLinks}>
-                <Link href="/inquiry" className={styles.quickLink}>
-                  📄 Request Bulk Quote
-                </Link>
-                <Link href="/contact" className={styles.quickLink}>
-                  📞 Technical Support
-                </Link>
-              </div>
             </motion.div>
           </div>
         </div>

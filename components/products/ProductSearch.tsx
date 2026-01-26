@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, TrendingUp, Clock } from "lucide-react";
+import { Search, X, Clock } from "lucide-react";
 import Link from "next/link";
+import debounce from "lodash/debounce";
 import { allProducts, productCategories } from "@/config/products.config";
 import { Input } from "@/components/ui/input";
 import styles from "./ProductSearch.module.scss";
@@ -74,67 +75,85 @@ export default function ProductSearch({
     localStorage.removeItem(RECENT_SEARCHES_KEY);
   };
 
-  // Search function with debouncing
-  useEffect(() => {
-    if (!value.trim()) {
+  // Search function
+  const performSearch = useCallback((query: string) => {
+    if (!query.trim()) {
       setResults([]);
       setIsSearching(false);
       return;
     }
 
-    setIsSearching(true);
+    const searchQuery = query.toLowerCase().trim();
+    const searchResults: SearchResult[] = [];
 
-    // Debounce search by 500ms for smoother experience
-    const debounceTimer = setTimeout(() => {
-      const query = value.toLowerCase().trim();
-      const searchResults: SearchResult[] = [];
+    // Search in categories
+    productCategories.forEach((category) => {
+      if (
+        category.name.toLowerCase().includes(searchQuery) ||
+        category.description.toLowerCase().includes(searchQuery)
+      ) {
+        searchResults.push({
+          type: "category",
+          id: category.id,
+          name: category.name,
+          slug: category.slug,
+          description: category.description,
+        });
+      }
+    });
 
-      // Search in categories
-      productCategories.forEach((category) => {
-        if (
-          category.name.toLowerCase().includes(query) ||
-          category.description.toLowerCase().includes(query)
-        ) {
-          searchResults.push({
-            type: "category",
-            id: category.id,
-            name: category.name,
-            slug: category.slug,
-            description: category.description,
-          });
-        }
-      });
+    // Search in products
+    allProducts.forEach((product) => {
+      const matchesName = product.name.toLowerCase().includes(searchQuery);
+      const matchesDesc = product.description.toLowerCase().includes(searchQuery);
+      const matchesCode = product.partNumber?.toLowerCase().includes(searchQuery);
+      const matchesTags = product.tags?.some((tag) =>
+        tag.toLowerCase().includes(searchQuery)
+      );
 
-      // Search in products
-      allProducts.forEach((product) => {
-        const matchesName = product.name.toLowerCase().includes(query);
-        const matchesDesc = product.description.toLowerCase().includes(query);
-        const matchesCode = product.partNumber?.toLowerCase().includes(query);
-        const matchesTags = product.tags?.some((tag) =>
-          tag.toLowerCase().includes(query)
-        );
+      if (matchesName || matchesDesc || matchesCode || matchesTags) {
+        searchResults.push({
+          type: matchesCode ? "code" : "product",
+          id: product.id,
+          name: product.name,
+          slug: product.slug,
+          category: product.category,
+          code: product.partNumber,
+          description: product.description,
+        });
+      }
+    });
 
-        if (matchesName || matchesDesc || matchesCode || matchesTags) {
-          searchResults.push({
-            type: matchesCode ? "code" : "product",
-            id: product.id,
-            name: product.name,
-            slug: product.slug,
-            category: product.category,
-            code: product.partNumber,
-            description: product.description,
-          });
-        }
-      });
+    // Limit results and update state
+    setResults(searchResults.slice(0, 8));
+    setIsSearching(false);
+  }, []);
 
-      // Limit results
-      setResults(searchResults.slice(0, 8));
+  // Create debounced search function
+  const debouncedSearch = useMemo(
+    () => debounce(performSearch, 500),
+    [performSearch]
+  );
+
+  // Cleanup debounce on unmount
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [debouncedSearch]);
+
+  // Trigger search when value changes
+  useEffect(() => {
+    if (!value.trim()) {
+      setResults([]);
       setIsSearching(false);
-    }, 500);
+      debouncedSearch.cancel();
+      return;
+    }
 
-    // Cleanup function to clear timeout if value changes before delay
-    return () => clearTimeout(debounceTimer);
-  }, [value]);
+    setIsSearching(true);
+    debouncedSearch(value);
+  }, [value, debouncedSearch]);
 
   // Handle click outside
   useEffect(() => {
