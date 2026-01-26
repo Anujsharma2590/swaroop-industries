@@ -18,6 +18,22 @@ type SortOption = "name" | "featured" | "category" | "newest";
 
 const PRODUCTS_PER_PAGE = 24;
 
+// Helper function to get category-specific icons
+function getCategoryIcon(category: string): string {
+  const icons: Record<string, string> = {
+    "Wire & Cables": "🔌",
+    "Brass Terminals": "⚡",
+    "Switches": "🔘",
+    "Flasher": "💡",
+    "Relay": "🔄",
+    "Tuner": "📻",
+    "Fuse Boxes & Wiring": "🔧",
+    "Holders & Connectors": "🔗",
+    "Electrical Components": "⚙️",
+  };
+  return icons[category] || "📦";
+}
+
 export default function ProductsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
@@ -286,8 +302,13 @@ export default function ProductsPage() {
                         href={`/products/${product.slug}`}
                         className={styles.productCard}
                       >
-                        <div className={styles.productImage}>
-                          <span className={styles.productIcon}>📦</span>
+                        <div className={styles.productImageWrapper}>
+                          <div className={styles.productImage}>
+                            <div className={styles.imagePattern}></div>
+                            <div className={styles.productIconWrapper}>
+                              <span className={styles.productIcon}>{getCategoryIcon(product.category)}</span>
+                            </div>
+                          </div>
                           {product.featured && (
                             <span className={styles.featuredBadge}>⭐ Featured</span>
                           )}
