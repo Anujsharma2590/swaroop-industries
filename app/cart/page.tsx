@@ -242,11 +242,6 @@ export default function CartPage() {
                 className={styles.inquirySection}
               >
                 <div className={styles.formCard}>
-                  <div className={styles.formHeader}>
-                    <MessageCircle className="h-8 w-8" />
-                    <h3>Send Inquiry via WhatsApp</h3>
-                    <p>Fill in your details to send product inquiry</p>
-                  </div>
 
                   <form onSubmit={handleSendInquiry} className={styles.inquiryForm}>
                     <div className={styles.formGroup}>

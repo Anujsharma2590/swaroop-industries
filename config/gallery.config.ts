@@ -1,124 +1,207 @@
 export interface GalleryImage {
   id: number;
   title: string;
-  category: "Products" | "Factory" | "Events" | "Team";
+  category: "Events" | "Products" | "Certificates";
   imageUrl: string;
   description?: string;
 }
 
 export const galleryImages: GalleryImage[] = [
+  // Dubai 2019 Event Images (existing files only)
   {
     id: 1,
-    title: "Automotive Components",
-    category: "Products",
-    imageUrl: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80",
-    description: "High-quality automotive parts"
+    title: "Dubai Exhibition 2019",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-01.jpeg",
+    description: "Saroop Industries at Dubai Auto Expo 2019"
   },
   {
     id: 2,
-    title: "Engine Parts",
-    category: "Products",
-    imageUrl: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&q=80",
-    description: "Precision engineered components"
+    title: "Product Display",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-04.jpeg",
+    description: "High-quality automotive terminals and connectors"
   },
   {
     id: 3,
-    title: "Brake Systems",
-    category: "Products",
-    imageUrl: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=800&q=80",
-    description: "Advanced brake technology"
+    title: "Industry Networking",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-05.jpeg",
+    description: "Meeting with industry partners and clients"
   },
   {
     id: 4,
-    title: "Suspension Parts",
-    category: "Products",
-    imageUrl: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80",
-    description: "Performance suspension systems"
+    title: "Exhibition Hall",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-06.jpeg",
+    description: "International automotive exhibition venue"
   },
-  
   {
     id: 5,
-    title: "Manufacturing Facility",
-    category: "Factory",
-    imageUrl: "https://images.unsplash.com/photo-1581092160607-ee67e7bf5e1c?w=800&q=80",
-    description: "State-of-the-art production line"
+    title: "Product Demonstration",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-07.jpeg",
+    description: "Demonstrating product features to visitors"
   },
   {
     id: 6,
-    title: "Quality Control",
-    category: "Factory",
-    imageUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
-    description: "Rigorous quality testing"
+    title: "Client Meetings",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-08.jpeg",
+    description: "Engaging with potential clients and partners"
   },
   {
     id: 7,
-    title: "Assembly Line",
-    category: "Factory",
-    imageUrl: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
-    description: "Efficient manufacturing process"
+    title: "Exhibition Stand",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-09.jpeg",
+    description: "Professional booth setup at Dubai exhibition"
   },
   {
     id: 8,
-    title: "Warehouse",
-    category: "Factory",
-    imageUrl: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80",
-    description: "Modern storage facility"
+    title: "Product Range Display",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-10.jpeg",
+    description: "Showcasing our complete product portfolio"
   },
-  
   {
     id: 9,
-    title: "Product Launch",
+    title: "Exhibition Highlights",
     category: "Events",
-    imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
-    description: "New product unveiling"
+    imageUrl: "/gallery/events/dubai-2019-13.jpeg",
+    description: "Key moments from Dubai exhibition"
   },
   {
     id: 10,
-    title: "Industry Conference",
+    title: "Global Exposure",
     category: "Events",
-    imageUrl: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80",
-    description: "Automotive industry exhibition"
+    imageUrl: "/gallery/events/dubai-2019-15.jpeg",
+    description: "International automotive industry event"
   },
   {
     id: 11,
-    title: "Team Celebration",
+    title: "Exhibition Success",
     category: "Events",
-    imageUrl: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
-    description: "Company milestone celebration"
+    imageUrl: "/gallery/events/dubai-2019-16.jpeg",
+    description: "Successful participation at Dubai 2019"
   },
-  
   {
     id: 12,
-    title: "Engineering Team",
-    category: "Team",
-    imageUrl: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80",
-    description: "Our skilled engineers"
+    title: "Product Catalogue",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-18.jpeg",
+    description: "Comprehensive product catalogue presentation"
   },
   {
     id: 13,
-    title: "Production Team",
-    category: "Team",
-    imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
-    description: "Dedicated production staff"
+    title: "Exhibition Team",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-19.jpeg",
+    description: "Our dedicated team at the exhibition"
   },
   {
     id: 14,
-    title: "Quality Assurance",
-    category: "Team",
-    imageUrl: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80",
-    description: "Quality control specialists"
+    title: "Business Opportunities",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-20.jpeg",
+    description: "Exploring new business partnerships"
   },
   {
     id: 15,
-    title: "Management Team",
-    category: "Team",
-    imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
-    description: "Leadership and vision"
+    title: "Trade Exhibition",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-23.jpeg",
+    description: "International automotive trade exhibition"
+  },
+  {
+    id: 16,
+    title: "Industry Recognition",
+    category: "Events",
+    imageUrl: "/gallery/events/dubai-2019-24.jpeg",
+    description: "Recognition in the automotive industry"
+  },
+
+  // Product Images
+  {
+    id: 18,
+    title: "Jumper Cable Set",
+    category: "Products",
+    imageUrl: "/gallery/products/jumper-cable-set.jpg",
+    description: "Heavy-duty jumper cable set"
+  },
+
+  // Certificate Images
+  {
+    id: 31,
+    title: "ISO 9001:2015 Certificate",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-07.jpg",
+    description: "Quality Management System Certification"
+  },
+  {
+    id: 32,
+    title: "ISO 14001:2015 Certificate",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-04.jpg",
+    description: "Environmental Management System Certification"
+  },
+  {
+    id: 33,
+    title: "ISO 45001:2018 Certificate",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-06.jpg",
+    description: "Occupational Health & Safety Management Certification"
+  },
+  {
+    id: 34,
+    title: "IATF 16949:2016 Certificate",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-05.jpg",
+    description: "Automotive Quality Management System Certification"
+  },
+  {
+    id: 35,
+    title: "CE Certification",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-08.jpg",
+    description: "European Conformity Certification"
+  },
+  {
+    id: 36,
+    title: "RoHS Compliance",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-09.jpg",
+    description: "Restriction of Hazardous Substances Compliance"
+  },
+  {
+    id: 37,
+    title: "WHO-GMP Certificate",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-10.jpg",
+    description: "Good Manufacturing Practice Certification"
+  },
+  {
+    id: 38,
+    title: "Company Logo",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-02.jpg",
+    description: "Saroop Industries Official Logo"
+  },
+  {
+    id: 39,
+    title: "Quality Assurance",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-03.jpg",
+    description: "MIQA Quality Certification"
+  },
+  {
+    id: 40,
+    title: "2027 Certification",
+    category: "Certificates",
+    imageUrl: "/gallery/certificates/certificate-01.jpg",
+    description: "Latest certification credentials"
   },
 ];
 
-export const galleryCategories = ["All", "Products", "Factory", "Events", "Team"] as const;
+export const galleryCategories = ["All", "Events", "Products", "Certificates"] as const;
 export type GalleryCategory = typeof galleryCategories[number];
-
-
-// TODO: Add more images and categories and chnage gallery.png to actual images

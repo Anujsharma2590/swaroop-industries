@@ -19,6 +19,7 @@ import {
   MapPin
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./CartDrawer.module.scss";
 
 // WhatsApp number (remove + and spaces)
@@ -240,7 +241,7 @@ export default function CartDrawer() {
                           className={styles.inquiryButton}
                           onClick={() => setShowInquiryForm(true)}
                         >
-                          <MessageCircle className="h-5 w-5" />
+                          <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={20} height={20} />
                           Send Inquiry on WhatsApp
                         </button>
                       </div>
@@ -257,12 +258,6 @@ export default function CartDrawer() {
                     ← Back to Cart
                   </button>
                   
-                  <div className={styles.formHeader}>
-                    <MessageCircle className="h-8 w-8" />
-                    <h3>Send Inquiry via WhatsApp</h3>
-                    <p>Fill in your details to send product inquiry directly to our WhatsApp</p>
-                  </div>
-
                   <form onSubmit={handleSendInquiry}>
                     <div className={styles.formGroup}>
                       <label>
@@ -363,7 +358,7 @@ export default function CartDrawer() {
                     </div>
 
                     <button type="submit" className={styles.submitButton}>
-                      <Send className="h-5 w-5" />
+                      <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={20} height={20} />
                       Send via WhatsApp
                     </button>
                   </form>

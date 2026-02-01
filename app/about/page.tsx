@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 
 import { companyInfo, siteConfig } from "@/config/site.config";
+import { aboutValues, certifications, timeline, stats, mapMarkers } from "@/config/about.config";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import ClientsSection from "@/components/sections/ClientsSection";
@@ -45,55 +46,8 @@ const AnimatedList = dynamic(() => import("@/components/ui/animated-list").then(
 import "yet-another-react-lightbox/styles.css";
 
 // ------------------------------
-// Static data
+// Static data now imported from config
 // ------------------------------
-const values = [
-  { icon: Target, title: "Our Mission", description: companyInfo.mission },
-  { icon: Eye, title: "Our Vision", description: companyInfo.vision },
-  {
-    icon: Award,
-    title: "Quality First",
-    description: "We maintain the highest quality standards in all our products, ensuring customer satisfaction and reliability.",
-  },
-  { icon: TrendingUp, title: "Innovation", description: "Continuously innovating to bring the best solutions for the automotive industry." },
-];
-
-const certifications = [
-  { name: "ISO 9001:2015", description: "Quality Management", logoSrc: "/about/certs/iso-9001.svg", certificateSrc: "/about/certificates/iso-9001.jpg" },
-  { name: "ISO 14001:2015", description: "Environmental Management", logoSrc: "/about/certs/iso-14001.svg", certificateSrc: "/about/certificates/iso-14001.jpg" },
-  { name: "ISO 45001:2018", description: "Health & Safety Management", logoSrc: "/about/certs/iso-45001.svg", certificateSrc: "/about/certificates/iso-45001.jpg" },
-  { name: "IATF 16949:2016", description: "Automotive Quality", logoSrc: "/about/certs/iatf-16949.svg", certificateSrc: "/about/certificates/iatf-16949.jpg" },
-  { name: "CE", description: "European Conformity", logoSrc: "/about/certs/ce.svg", certificateSrc: "/about/certificates/ce.jpg" },
-  { name: "RoHS", description: "Hazardous Substances", logoSrc: "/about/certs/rohs.svg", certificateSrc: "/about/certificates/rohs.jpg" },
-  { name: "UL", description: "Safety Certification", logoSrc: "/about/certs/ul.svg" },
-  { name: "CSA", description: "Canadian Standards", logoSrc: "/about/certs/csa.svg" },
-  { name: "WHO GMP", description: "Good Manufacturing Practice", logoSrc: "/about/certs/who-gmp.svg", certificateSrc: "/about/certificates/who-gmp.jpg" },
-];
-
-const timeline = [
-  { year: "2015", title: "Company Founded", description: "Saroop Industries launched with a vision to transform automotive manufacturing", icon: Users },
-  { year: "2017", title: "ISO Certified", description: "Achieved ISO 9001:2015, ISO 14001:2015, and ISO 45001:2018 certifications", icon: Shield },
-  { year: "2020", title: "Global Expansion", description: "Opened branch office in Canada, serving 50+ countries worldwide", icon: Globe },
-  { year: "2025", title: "Industry Leader", description: "500+ products serving 1000+ happy customers with cutting-edge technology", icon: Award },
-];
-
-const stats = [
-  { icon: Clock, value: parseInt(companyInfo.experience), suffix: "+", label: "Years of Excellence", description: "Industry experience", color: "#93c967" },
-  { icon: Package, value: 500, suffix: "+", label: "Products", description: "In our catalog", color: "#3b82f6" },
-  { icon: Users, value: 1000, suffix: "+", label: "Happy Customers", description: "Worldwide", color: "#10b981" },
-  { icon: Globe, value: 50, suffix: "+", label: "Countries", description: "Global reach", color: "#8b5cf6" },
-];
-
-const mapMarkers = [
-  { lat: 28.6139, lng: 77.209, size: 0.5 },
-  { lat: 43.6532, lng: -79.3832, size: 0.4 },
-  { lat: 40.7128, lng: -74.006, size: 0.3 },
-  { lat: 51.5074, lng: -0.1278, size: 0.3 },
-  { lat: 35.6762, lng: 139.6503, size: 0.3 },
-  { lat: -33.8688, lng: 151.2093, size: 0.3 },
-  { lat: 25.2048, lng: 55.2708, size: 0.3 },
-  { lat: 1.3521, lng: 103.8198, size: 0.3 },
-];
 
 const certificateEntries = certifications.filter((c) => !!c.certificateSrc);
 
@@ -488,7 +442,7 @@ export default function AboutPage() {
             </motion.div>
 
             <div className={styles.bentoGrid}>
-              {values.map((value, index) => {
+              {aboutValues.map((value, index) => {
                 const Icon = value.icon;
                 return (
                   <motion.div
