@@ -11,6 +11,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StatsSection from "@/components/sections/StatsSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
 import CategoriesSection from "@/components/sections/CategoriesSection";
+import ClientsSection from "@/components/sections/ClientsSection";
 import { Target, Eye, ArrowRight, Phone } from "lucide-react";
 import styles from "./page.module.scss";
 
@@ -19,6 +20,7 @@ export default function Home() {
     <div className={styles.home}>
       <HeroSection />
       <StatsSection />
+      <ClientsSection />
       <FeaturesSection />
       <CategoriesSection />
       <ProductGrid products={featuredProducts} />

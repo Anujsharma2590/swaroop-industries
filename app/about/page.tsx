@@ -23,6 +23,7 @@ import {
 import { companyInfo, siteConfig } from "@/config/site.config";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { TypingAnimation } from "@/components/ui/typing-animation";
+import ClientsSection from "@/components/sections/ClientsSection";
 import styles from "./page.module.scss";
 
 // Lazy / dynamic components
@@ -468,6 +469,9 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </section>
+
+                {/* Trusted Clients Section */}
+                <ClientsSection />
 
         {/* Values Section */}
         <section className={styles.values}>

@@ -201,32 +201,54 @@ export default function ProductDetailView({
           <div className="container mx-auto px-4 py-16">
             <h2 className={styles.sectionTitle}>Related Products</h2>
             <div className={styles.relatedGrid}>
-              {relatedProducts.map((relatedProduct, index) => (
-                <motion.div
-                  key={relatedProduct.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <Link
-                    href={`/products/${relatedProduct.slug}`}
-                    className={styles.relatedCard}
+              {relatedProducts.map((relatedProduct, index) => {
+                // Get image from product, falling back to first variant if needed
+                let imageUrl = relatedProduct.image;
+                if (!imageUrl && relatedProduct.images && relatedProduct.images.length > 0) {
+                  imageUrl = relatedProduct.images[0];
+                }
+                if (!imageUrl && relatedProduct.variants && relatedProduct.variants.length > 0) {
+                  const firstVariant = relatedProduct.variants[0];
+                  if (firstVariant.images && firstVariant.images.length > 0) {
+                    imageUrl = firstVariant.images[0];
+                  }
+                }
+
+                return (
+                  <motion.div
+                    key={relatedProduct.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
-                    <div className={styles.relatedImage}>
-                      <span>📦</span>
-                    </div>
-                    <div className={styles.relatedContent}>
-                      <h4>{relatedProduct.name}</h4>
-                      {relatedProduct.partNumber && (
-                        <p className={styles.relatedCode}>
-                          {relatedProduct.partNumber}
-                        </p>
-                      )}
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={`/products/${relatedProduct.slug}`}
+                      className={styles.relatedCard}
+                    >
+                      <div className={styles.relatedImage}>
+                        {imageUrl ? (
+                          <img 
+                            src={imageUrl} 
+                            alt={relatedProduct.name}
+                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                          />
+                        ) : (
+                          <span>📦</span>
+                        )}
+                      </div>
+                      <div className={styles.relatedContent}>
+                        <h4>{relatedProduct.name}</h4>
+                        {relatedProduct.partNumber && (
+                          <p className={styles.relatedCode}>
+                            {relatedProduct.partNumber}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>

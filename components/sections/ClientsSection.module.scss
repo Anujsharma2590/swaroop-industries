@@ -1,0 +1,102 @@
+.clientsSection {
+  padding: 5rem 0;
+  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+  overflow: hidden;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: hsl(var(--muted-foreground));
+  max-width: 600px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+.marqueeContainer {
+  margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    margin-top: 1.5rem;
+  }
+}
+
+.logoWrapper {
+  flex-shrink: 0;
+  width: 180px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid hsl(var(--border));
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 80px;
+    padding: 0.75rem;
+  }
+
+  @media (max-width: 480px) {
+    width: 120px;
+    height: 70px;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: hsl(var(--primary));
+
+    .logo {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+  }
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+
+  @media (max-width: 768px) {
+    filter: grayscale(0%);
+    opacity: 0.9;
+  }
+}
