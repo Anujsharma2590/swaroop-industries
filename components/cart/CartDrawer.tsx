@@ -23,7 +23,7 @@ import Image from "next/image";
 import styles from "./CartDrawer.module.scss";
 
 // WhatsApp number (remove + and spaces)
-const WHATSAPP_NUMBER = "919891169000";
+const WHATSAPP_NUMBER = "919810095059";
 
 interface InquiryFormData {
   name: string;

@@ -23,7 +23,7 @@ import {
 import styles from "./page.module.scss";
 
 // WhatsApp number (remove + and spaces)
-const WHATSAPP_NUMBER = "919891169000";
+const WHATSAPP_NUMBER = "919810095059";
 
 interface InquiryFormData {
   name: string;
