@@ -9,8 +9,9 @@ import { CartProvider } from "@/contexts/CartContext";
 import { BackToTop } from "@/components/ui/back-to-top";
 import ContactSidebar from "@/components/ui/contact-sidebar";
 import { siteConfig } from "@/config/site.config";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/react";
 
+/* ------------------ FONTS ------------------ */
 const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-dm-sans",
@@ -25,12 +26,12 @@ const outfit = Outfit({
   weight: ["300", "400", "500", "600", "700", "800"],
 });
 
-/* ------------------ VIEWPORT (Mobile SEO) ------------------ */
+/* ------------------ VIEWPORT ------------------ */
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0f172a", // match your brand color
+  themeColor: "#0f172a",
 };
 
 /* ------------------ METADATA ------------------ */
@@ -43,7 +44,6 @@ export const metadata: Metadata = {
   },
 
   description: siteConfig.description,
-
   applicationName: siteConfig.name,
 
   keywords: [
@@ -60,13 +60,7 @@ export const metadata: Metadata = {
     "Saroop Industries",
   ],
 
-  authors: [
-    {
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  ],
-
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
 
@@ -95,7 +89,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: "/og-image.jpg", // IMPORTANT: add this image
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -110,18 +104,31 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
 
+  /* -------- FAVICONS & APP ICONS (CORRECT WAY) -------- */
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/icon.png", type: "image/png", sizes: "any" },
+      { url: "/favicon.ico" },
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: { url: "/apple-touch-icon.png", type: "image/png" },
-    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+    other: [
+      {
+        rel: "android-chrome-192x192",
+        url: "/android-chrome-192x192.png",
+      },
+      {
+        rel: "android-chrome-512x512",
+        url: "/android-chrome-512x512.png",
+      },
+    ],
   },
 
+  manifest: "/site.webmanifest",
   category: "Automotive Parts",
 };
 
+/* ------------------ ROOT LAYOUT ------------------ */
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -134,13 +141,14 @@ export default function RootLayout({
           <Header />
           <main className="min-h-screen" role="main">
             {children}
-
           </main>
           <Footer />
           <CartDrawer />
           <BackToTop />
           <ContactSidebar />
         </CartProvider>
+
+        {/* Vercel Analytics */}
         <Analytics />
       </body>
     </html>
