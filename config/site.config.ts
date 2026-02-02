@@ -10,7 +10,7 @@ export const siteConfig = {
 
   /* ------------------ BRANDING ------------------ */
   logo: "/logo.png",               // place in /public
-  ogImage: "/og-image.jpg",        // 1200x630
+  ogImage: "/og-image.png",        // 1200x630
   themeColor: "#0f172a",
 
   /* ------------------ CONTACT ------------------ */
