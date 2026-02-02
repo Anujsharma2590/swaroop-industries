@@ -1,0 +1,33 @@
+// styles/_breakpoints.scss
+$breakpoints: (
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px
+);
+
+@mixin down($key) {
+  $size: map-get($breakpoints, $key);
+
+  @if $size == null {
+    @error "Unknown breakpoint: #{$key}";
+  }
+
+  // max-width = 1px less than breakpoint
+  @media (max-width: ($size - 1px)) {
+    @content;
+  }
+}
+
+@mixin up($key) {
+  $size: map-get($breakpoints, $key);
+
+  @if $size == null {
+    @error "Unknown breakpoint: #{$key}";
+  }
+
+  @media (min-width: $size) {
+    @content;
+  }
+}

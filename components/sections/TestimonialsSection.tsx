@@ -129,7 +129,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
           </div>
           <div className={styles.badgeDivider} />
           <div className={styles.badge}>
-            <span className={styles.badgeValue}>1000+</span>
+            <span className={styles.badgeValue}>3000+</span>
             <div className={styles.badgeContent}>
               <span className={styles.badgeLabel}>Happy Customers</span>
             </div>
