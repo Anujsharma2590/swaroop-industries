@@ -9,6 +9,7 @@ import { CartProvider } from "@/contexts/CartContext";
 import { BackToTop } from "@/components/ui/back-to-top";
 import ContactSidebar from "@/components/ui/contact-sidebar";
 import { siteConfig } from "@/config/site.config";
+import { Analytics } from '@vercel/analytics/next';
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -133,12 +134,14 @@ export default function RootLayout({
           <Header />
           <main className="min-h-screen" role="main">
             {children}
+
           </main>
           <Footer />
           <CartDrawer />
           <BackToTop />
           <ContactSidebar />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
