@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -77,7 +78,7 @@ export default function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
               >
-                Engineering excellence in brass terminals, battery cables, and electrical components. 
+                Engineering excellence in brass terminals, battery cables, and electrical components.
                 Trusted by automotive manufacturers worldwide for quality and reliability.
               </motion.p>
 
@@ -107,15 +108,31 @@ export default function HeroSection() {
                   <span>Explore Products</span>
                   <ArrowRight className="h-5 w-5" />
                 </Link>
-                <a 
-                  href={siteConfig.brochureUrl} 
-                  target="_blank" 
+
+                <a
+                  href={siteConfig.brochureUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={styles.secondaryCta}
                 >
                   <Download className="h-5 w-5" />
                   <span>Download Brochure</span>
                 </a>
+              </motion.div>
+
+              {/* ✅ Mobile Video (shows only on mobile/tablet via CSS) */}
+              <motion.div
+                className={styles.mobileVideo}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.85, duration: 0.6 }}
+              >
+                <HeroVideoDialog
+                  animationStyle="from-center"
+                  videoSrc="https://www.youtube.com/embed/-owsomxMyao"
+                  thumbnailSrc="/hero-thumbnail.png"
+                  thumbnailAlt="Swaroop Industries Manufacturing Video"
+                />
               </motion.div>
 
               {/* Trust Indicators */}
@@ -142,7 +159,7 @@ export default function HeroSection() {
               </motion.div>
             </motion.div>
 
-            {/* Right Column - Video */}
+            {/* Right Column - Video (Desktop only) */}
             <motion.div
               className={styles.visualColumn}
               initial={{ opacity: 0, scale: 0.95 }}
@@ -168,10 +185,7 @@ export default function HeroSection() {
         transition={{ delay: 1.2, duration: 0.6 }}
       >
         <span>Scroll to explore</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
           <ChevronDown className="h-5 w-5" />
         </motion.div>
       </motion.div>
