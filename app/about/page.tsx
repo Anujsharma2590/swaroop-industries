@@ -6,6 +6,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useInView } from "react-intersection-observer";
 import { LazyMotion, domAnimation, motion, useScroll, useTransform } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import {
   Award,
   Download,
@@ -38,12 +40,9 @@ const Marquee = dynamic(() => import("@/components/ui/marquee").then((m) => m.Ma
   loading: () => <div className="h-20" />,
 });
 const CountUp = dynamic(() => import("react-countup"), { ssr: false, loading: () => <span>0</span> });
-const AnimatedList = dynamic(() => import("@/components/ui/animated-list").then((m) => m.AnimatedList), {
-  ssr: false,
-  loading: () => <div className="h-96" />,
-});
-
 import "yet-another-react-lightbox/styles.css";
+import "swiper/css";
+import "swiper/css/pagination";
 
 // ------------------------------
 // Static data now imported from config
@@ -273,7 +272,7 @@ export default function AboutPage() {
 
         {/* About Content Section */}
         <section className={styles.about}>
-          <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20">
+          <div className={styles.aboutContainer}>
             <div className={styles.aboutGrid}>
               <motion.div
                 initial={{ opacity: 0, x: -28 }}
@@ -283,7 +282,7 @@ export default function AboutPage() {
                 className={styles.aboutContent}
               >
                 <h2 className={styles.sectionTitle}>Depending on your needs</h2>
-                <p className={styles.description}>{companyInfo.about}</p>
+                <p className={`${styles.description} ${styles.aboutText}`}>{companyInfo.about}</p>
 
                 <div className={styles.highlights}>
                   <motion.div
@@ -316,7 +315,7 @@ export default function AboutPage() {
                 </div>
               </motion.div>
 
-              {/* Certifications animated list (mounted only when in view) */}
+              {/* Certifications list */}
               <motion.div
                 initial={{ opacity: 0, x: 28 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -330,54 +329,50 @@ export default function AboutPage() {
                     <p>Internationally recognized quality standards</p>
                   </div>
 
-                  <div className={styles.certAnimatedList}>
-                    <MountOnView minHeight={500}>
-                      <AnimatedList delay={2000}>
-                        {certifications.map((cert) => {
-                          const showLogo = !!cert.logoSrc && !certLogoFailed[cert.name];
-                          const canOpen = !!cert.certificateSrc;
-                          const slideIndex = canOpen
-                            ? certificateEntries.findIndex((c) => c.name === cert.name)
-                            : -1;
+                  <div className={styles.certList}>
+                    {certifications.map((cert) => {
+                      const showLogo = !!cert.logoSrc && !certLogoFailed[cert.name];
+                      const canOpen = !!cert.certificateSrc;
+                      const slideIndex = canOpen
+                        ? certificateEntries.findIndex((c) => c.name === cert.name)
+                        : -1;
 
-                          return (
-                            <button
-                              key={cert.name}
-                              type="button"
-                              className={`${styles.certCard} ${
-                                canOpen ? styles.certCardClickable : styles.certCardDisabled
-                              }`}
-                              onClick={() => {
-                                if (slideIndex >= 0) setCertLightboxIndex(slideIndex);
-                              }}
-                              aria-label={canOpen ? `View ${cert.name} certificate` : `${cert.name} certificate not available`}
-                              aria-disabled={!canOpen}
-                            >
-                              <div className={styles.certLogoWrap}>
-                                {showLogo ? (
-                                  <Image
-                                    src={cert.logoSrc}
-                                    alt={`${cert.name} certification logo`}
-                                    width={64}
-                                    height={64}
-                                    className={styles.certLogo}
-                                    onError={() => markCertLogoFailed(cert.name)}
-                                  />
-                                ) : (
-                                  <div className={styles.certLogoFallback}>{cert.name}</div>
-                                )}
-                              </div>
+                      return (
+                        <button
+                          key={cert.name}
+                          type="button"
+                          className={`${styles.certCard} ${
+                            canOpen ? styles.certCardClickable : styles.certCardDisabled
+                          }`}
+                          onClick={() => {
+                            if (slideIndex >= 0) setCertLightboxIndex(slideIndex);
+                          }}
+                          aria-label={canOpen ? `View ${cert.name} certificate` : `${cert.name} certificate not available`}
+                          aria-disabled={!canOpen}
+                        >
+                          <div className={styles.certLogoWrap}>
+                            {showLogo ? (
+                              <Image
+                                src={cert.logoSrc}
+                                alt={`${cert.name} certification logo`}
+                                width={64}
+                                height={64}
+                                className={styles.certLogo}
+                                onError={() => markCertLogoFailed(cert.name)}
+                              />
+                            ) : (
+                              <div className={styles.certLogoFallback}>{cert.name}</div>
+                            )}
+                          </div>
 
-                              <div className={styles.certCardBody}>
-                                <div className={styles.certName}>{cert.name}</div>
-                                <div className={styles.certDesc}>{cert.description}</div>
-                                {!canOpen && <div className={styles.certHint}>Certificate coming soon</div>}
-                              </div>
-                            </button>
-                          );
-                        })}
-                      </AnimatedList>
-                    </MountOnView>
+                          <div className={styles.certCardBody}>
+                            <div className={styles.certName}>{cert.name}</div>
+                            <div className={styles.certDesc}>{cert.description}</div>
+                            {!canOpen && <div className={styles.certHint}>Certificate coming soon</div>}
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </motion.div>
@@ -441,6 +436,37 @@ export default function AboutPage() {
               <p className={styles.description}>The principles that guide everything we do</p>
             </motion.div>
 
+            {/* Mobile: Slider */}
+            <div className={styles.valuesSliderWrapper}>
+              <Swiper
+                modules={[Pagination]}
+                spaceBetween={16}
+                slidesPerView={1.15}
+                pagination={{ clickable: true }}
+                className={styles.valuesSlider}
+              >
+                {aboutValues.map((value, index) => {
+                  const Icon = value.icon;
+                  return (
+                    <SwiperSlide key={index}>
+                      <div className={`${styles.bentoCard} ${styles[`bento${index + 1}`]}`}>
+                        <div className={styles.cardGlow} />
+                        <div className={styles.cardBorder} />
+                        <div className={styles.cardContent}>
+                          <div className={styles.iconWrapper}>
+                            <Icon className={styles.icon} />
+                          </div>
+                          <h3 className={styles.valueTitle}>{value.title}</h3>
+                          <p className={styles.valueDescription}>{value.description}</p>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
+
+            {/* Desktop: Grid */}
             <div className={styles.bentoGrid}>
               {aboutValues.map((value, index) => {
                 const Icon = value.icon;
@@ -451,7 +477,7 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.45, delay: index * 0.06 }}
-                    whileHover={{ y: -6, scale: 1.01 }} // keep light
+                    whileHover={{ y: -6, scale: 1.01 }}
                     className={`${styles.bentoCard} ${styles[`bento${index + 1}`]}`}
                   >
                     <div className={styles.cardGlow} />
@@ -573,12 +599,15 @@ export default function AboutPage() {
 
           {/* Dotted map mounted only when in view */}
           <div className={styles.ctaMapBackground}>
-            <MountOnView minHeight={260}>
+            <MountOnView minHeight={380}>
               <DottedMap
+                width={600}
+                height={300}
+                mapSamples={8000}
                 markers={mapMarkers}
-                markerColor="rgba(255, 255, 255, 0.7)"
-                dotRadius={0.35}
-                dotColor="rgba(255, 255, 255, 0.2)"
+                markerColor="rgba(255, 255, 255, 0.95)"
+                dotRadius={0.4}
+                dotColor="rgba(255, 255, 255, 0.5)"
               />
             </MountOnView>
           </div>
