@@ -63,7 +63,7 @@ const stats = [
   },
   {
     icon: Users,
-    value: 1000,
+    value: 3000,
     suffix: "+",
     label: "Happy Customers",
     description: "Worldwide",
