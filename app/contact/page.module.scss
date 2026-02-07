@@ -1,8 +1,13 @@
+@use "@/styles/breakpoints" as bp;
+
 .hero {
   position: relative;
-  background: 
-    linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.75) 100%),
-    url('/contact/contact-img.jpg') center bottom;
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.85) 0%,
+      rgba(15, 23, 42, 0.75) 100%
+    ),
+    url("/contact/contact-img.jpg") center bottom;
   background-size: cover;
   background-attachment: fixed;
   background-position: center 40%;
@@ -18,7 +23,11 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(147, 201, 103, 0.1) 0%, transparent 50%);
+  background: radial-gradient(
+    circle at 30% 50%,
+    rgba(147, 201, 103, 0.1) 0%,
+    transparent 50%
+  );
   pointer-events: none;
 }
 
@@ -49,7 +58,8 @@
 }
 
 @keyframes badgePulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 20px rgba(147, 201, 103, 0.3);
     border-color: rgba(147, 201, 103, 0.4);
   }
@@ -67,21 +77,19 @@
   line-height: 1.1;
   color: white;
   position: relative;
-  text-shadow: 
-    0 0 40px rgba(147, 201, 103, 0.3),
+  text-shadow: 0 0 40px rgba(147, 201, 103, 0.3),
     0 0 80px rgba(147, 201, 103, 0.2);
   animation: titleGlow 4s ease-in-out infinite;
 }
 
 @keyframes titleGlow {
-  0%, 100% {
-    text-shadow: 
-      0 0 40px rgba(147, 201, 103, 0.3),
+  0%,
+  100% {
+    text-shadow: 0 0 40px rgba(147, 201, 103, 0.3),
       0 0 80px rgba(147, 201, 103, 0.2);
   }
   50% {
-    text-shadow: 
-      0 0 50px rgba(147, 201, 103, 0.5),
+    text-shadow: 0 0 50px rgba(147, 201, 103, 0.5),
       0 0 100px rgba(147, 201, 103, 0.3);
   }
 }
@@ -106,6 +114,10 @@
     gap: 3rem;
     align-items: start;
   }
+  @include bp.down(md) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .contactInfo {
@@ -119,6 +131,7 @@
   font-family: var(--font-outfit), sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
+  line-height: 1.2;
   color: hsl(var(--primary));
 }
 
@@ -169,7 +182,8 @@
     flex-shrink: 0;
   }
 
-  p, span {
+  p,
+  span {
     font-size: 0.9375rem;
     color: hsl(var(--foreground));
     line-height: 1.5;
@@ -186,7 +200,7 @@
     padding: 0.25rem 0;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       bottom: 0;
@@ -198,7 +212,7 @@
 
     &:hover {
       color: hsl(var(--accent));
-      
+
       &::after {
         width: 100%;
       }
@@ -290,7 +304,11 @@
 }
 
 .brochureCta {
-  background: linear-gradient(135deg, hsl(222 47% 11%) 0%, hsl(222 47% 18%) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(222 47% 11%) 0%,
+    hsl(222 47% 18%) 100%
+  );
   border-radius: 16px;
   padding: 1.5rem;
   color: white;
@@ -298,13 +316,17 @@
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     right: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(147, 201, 103, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(147, 201, 103, 0.1) 0%,
+      transparent 70%
+    );
     animation: ctaGlow 6s ease-in-out infinite;
   }
 
@@ -328,7 +350,8 @@
 }
 
 @keyframes ctaGlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0.3;
   }
@@ -343,7 +366,11 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(94 46% 50%) 100%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--accent)) 0%,
+    hsl(94 46% 50%) 100%
+  );
   color: white;
   font-weight: 600;
   font-size: 0.9375rem;
@@ -356,7 +383,7 @@
   animation: buttonPulse 3s ease-in-out infinite;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
@@ -372,19 +399,16 @@
   }
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     border-radius: 10px;
     padding: 2px;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
-    mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -418,22 +442,27 @@
   0% {
     left: -100%;
   }
-  50%, 100% {
+  50%,
+  100% {
     left: 200%;
   }
 }
 
 @keyframes buttonPulse {
-  0%, 100% {
-    box-shadow: 0 4px 15px rgba(147, 201, 103, 0.3), 0 0 0 0 rgba(147, 201, 103, 0.4);
+  0%,
+  100% {
+    box-shadow: 0 4px 15px rgba(147, 201, 103, 0.3),
+      0 0 0 0 rgba(147, 201, 103, 0.4);
   }
   50% {
-    box-shadow: 0 6px 20px rgba(147, 201, 103, 0.4), 0 0 0 8px rgba(147, 201, 103, 0);
+    box-shadow: 0 6px 20px rgba(147, 201, 103, 0.4),
+      0 0 0 8px rgba(147, 201, 103, 0);
   }
 }
 
 @keyframes downloadBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(2px) scale(1.1);
   }
   50% {
@@ -500,20 +529,24 @@
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(94 46% 50%) 100%);
+      background: linear-gradient(
+        135deg,
+        hsl(var(--accent)) 0%,
+        hsl(94 46% 50%) 100%
+      );
     }
   }
 
   @media (max-width: 640px) {
     padding: 0.875rem 1rem;
     font-size: 0.875rem;
-    
+
     svg {
       display: none;
     }
@@ -541,3 +574,12 @@
   }
 }
 
+.phoneList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.pipe {
+  margin: 0 0.5rem;
+  color: hsl(var(--muted-foreground));
+}

@@ -3,11 +3,18 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { siteConfig } from "@/config/site.config";
-import { MapPin, Phone, Mail, Clock, Download, Globe, PhoneCall } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  Download,
+  Globe
+} from "lucide-react";
 import styles from "./page.module.scss";
 
 export default function ContactPage() {
-  const [activeTab, setActiveTab] = useState<'india' | 'canada'>('india');
+  const [activeTab, setActiveTab] = useState<"india" | "canada">("india");
 
   return (
     <div className={styles.contactPage}>
@@ -24,7 +31,8 @@ export default function ContactPage() {
             <span className={styles.badge}>Contact Us</span>
             <h1 className={styles.title}>Get In Touch</h1>
             <p className={styles.description}>
-              Have a question or need a quote? We&apos;re here to help with all your automotive component needs.
+              Have a question or need a quote? We&apos;re here to help with all
+              your automotive component needs.
             </p>
           </motion.div>
         </div>
@@ -44,7 +52,8 @@ export default function ContactPage() {
             >
               <h2 className={styles.sectionTitle}>Contact Information</h2>
               <p className={styles.sectionDescription}>
-                Reach out to us through any of the following channels. We respond to all inquiries within 24 hours.
+                Reach out to us through any of the following channels. We
+                respond to all inquiries within 24 hours.
               </p>
 
               {/* Head Office */}
@@ -62,18 +71,26 @@ export default function ContactPage() {
                   </div>
                   <div className={styles.infoItem}>
                     <Phone className={styles.icon} />
-                    <div>
-                      {siteConfig.phone.map((phone) => (
-                        <div key={phone}>
-                          <a href={`tel:${phone}`}>{phone}</a>,&nbsp;
-                        </div>
+
+                    <div className={styles.phoneList}>
+                      {siteConfig.phone.map((phone, index) => (
+                        <span key={phone}>
+                          <a href={`tel:${phone}`}>{phone}</a>
+
+                          {/* show pipe only if not last */}
+                          {index !== siteConfig.phone.length - 1 && (
+                            <span className={styles.pipe}> | </span>
+                          )}
+                        </span>
                       ))}
                     </div>
                   </div>
                   <div className={styles.infoItem}>
                     <Mail className={styles.icon} />
                     <div>
-                      <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+                      <a href={`mailto:${siteConfig.email}`}>
+                        {siteConfig.email}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -95,13 +112,17 @@ export default function ContactPage() {
                   <div className={styles.infoItem}>
                     <Phone className={styles.icon} />
                     <div>
-                      <a href={`tel:${siteConfig.branchOffice.phone}`}>{siteConfig.branchOffice.phone}</a>
+                      <a href={`tel:${siteConfig.branchOffice.phone}`}>
+                        {siteConfig.branchOffice.phone}
+                      </a>
                     </div>
                   </div>
                   <div className={styles.infoItem}>
                     <Mail className={styles.icon} />
                     <div>
-                      <a href={`mailto:${siteConfig.branchOffice.email}`}>{siteConfig.branchOffice.email}</a>
+                      <a href={`mailto:${siteConfig.branchOffice.email}`}>
+                        {siteConfig.branchOffice.email}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -121,10 +142,13 @@ export default function ContactPage() {
               {/* Download Brochure CTA */}
               <div className={styles.brochureCta}>
                 <h3>Product Catalog</h3>
-                <p>Download our complete product catalog with specifications and pricing.</p>
-                <a 
-                  href={siteConfig.brochureUrl} 
-                  target="_blank" 
+                <p>
+                  Download our complete product catalog with specifications and
+                  pricing.
+                </p>
+                <a
+                  href={siteConfig.brochureUrl}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className={styles.downloadButton}
                 >
@@ -145,15 +169,19 @@ export default function ContactPage() {
               {/* Map Tabs */}
               <div className={styles.mapTabs}>
                 <button
-                  className={`${styles.mapTab} ${activeTab === 'india' ? styles.active : ''}`}
-                  onClick={() => setActiveTab('india')}
+                  className={`${styles.mapTab} ${
+                    activeTab === "india" ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveTab("india")}
                 >
                   <Globe className="h-4 w-4" />
                   India Office
                 </button>
                 <button
-                  className={`${styles.mapTab} ${activeTab === 'canada' ? styles.active : ''}`}
-                  onClick={() => setActiveTab('canada')}
+                  className={`${styles.mapTab} ${
+                    activeTab === "canada" ? styles.active : ""
+                  }`}
+                  onClick={() => setActiveTab("canada")}
                 >
                   <Globe className="h-4 w-4" />
                   Canada Office
@@ -162,7 +190,7 @@ export default function ContactPage() {
 
               {/* Map Container */}
               <div className={styles.mapContainer}>
-                {activeTab === 'india' && (
+                {activeTab === "india" && (
                   <motion.iframe
                     key="india-map"
                     initial={{ opacity: 0 }}
@@ -179,7 +207,7 @@ export default function ContactPage() {
                     title="Saroop Industries India Location"
                   />
                 )}
-                {activeTab === 'canada' && (
+                {activeTab === "canada" && (
                   <motion.iframe
                     key="canada-map"
                     initial={{ opacity: 0 }}
