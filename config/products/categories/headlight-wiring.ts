@@ -14,7 +14,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light relay wiring harness without relay. Complete wiring kit for headlight upgrade. Made with premium quality wire.",
     partNumber: "SI2100",
-    image: "/products/headlight-wiring/headlight-wiring/SI2100.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2100.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -34,7 +34,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light relay wiring without relay. Features bakelite holder for durability and heat resistance.",
     partNumber: "SI2101",
-    image: "/products/headlight-wiring/headlight-wiring/SI2101.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2101.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -54,7 +54,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light relay wiring without relay. Extra long wire for commercial vehicles and trucks.",
     partNumber: "SI2103",
-    image: "/products/headlight-wiring/headlight-wiring/SI2103.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2103.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "Without Relay",
@@ -73,7 +73,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light relay wiring without relay. Features 60 AMPS single fuse for heavy duty applications.",
     partNumber: "SI2106",
-    image: "/products/headlight-wiring/headlight-wiring/SI2106.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2106.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -92,7 +92,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light wiring without relay and without fuse. Bakelite holder. For vehicles with existing fuse protection.",
     partNumber: "SI2107",
-    image: "/products/headlight-wiring/headlight-wiring/SI2107.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2107.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "Without Relay",
@@ -111,7 +111,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light wiring without relay and without fuse. Basic wiring harness.",
     partNumber: "SI2108",
-    image: "/products/headlight-wiring/headlight-wiring/SI2108.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2108.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "Without Relay",
@@ -129,7 +129,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light wiring without relay. Compatible with H1/H7 bulb holders.",
     partNumber: "SI2109",
-    image: "/products/headlight-wiring/headlight-wiring/SI2109.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2109.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "Without Relay",
@@ -148,7 +148,7 @@ export const headlightWiringWithoutRelayProducts: Product[] = [
     subcategory: "Head Light Wiring Without Relay",
     description: "Universal head light wiring without relay. Features 4 ACE fuse with ceramic gity holder.",
     partNumber: "SI2110",
-    image: "/products/headlight-wiring/headlight-wiring/SI2110.jpg",
+    images: ["/products/headlight-wiring/withoutrelay/SI2110.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "Without Relay",
@@ -171,7 +171,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light relay wiring harness with 12V relay included. Complete plug-and-play kit for headlight upgrade with relay switching.",
     partNumber: "SI2100R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2100R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2100R.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -192,7 +192,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light relay wiring with 12V relay. Features bakelite holder for superior heat resistance.",
     partNumber: "SI2101R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2101R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2101R.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -213,7 +213,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light relay wiring with 12V relay. Extra long wire for commercial vehicles and trucks.",
     partNumber: "SI2103R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2103R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2103R.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "With 12V Relay",
@@ -233,7 +233,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light relay wiring with 12V relay. Features 60 AMPS single fuse for heavy duty applications.",
     partNumber: "SI2106R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2106R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2106R.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -253,7 +253,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light wiring with 12V relay and bakelite holder, without fuse. For vehicles with existing fuse protection.",
     partNumber: "SI2107R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2107R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2107R.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "With 12V Relay",
@@ -273,7 +273,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light wiring with 12V relay, without fuse. Basic relay wiring harness.",
     partNumber: "SI2108R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2108R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2108R.jpg"],
     specifications: {
       "Type": "Head Light Relay Wiring",
       "Relay": "With 12V Relay",
@@ -292,7 +292,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light wiring with 12V relay. Compatible with H1/H7 bulb holders.",
     partNumber: "SI2109R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2109R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2109R.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
@@ -313,7 +313,7 @@ export const headlightWiringWithRelayProducts: Product[] = [
     subcategory: "Head Light Wiring With Relay",
     description: "Universal head light wiring with 12V relay. Features 4 ACE fuse with ceramic gity holder.",
     partNumber: "SI2110R",
-    image: "/products/headlight-wiring/headlight-wiring/SI2110R.jpg",
+    images: ["/products/headlight-wiring/withrelay/SI2110R.jpg"],
     featured: true,
     specifications: {
       "Type": "Head Light Relay Wiring",
