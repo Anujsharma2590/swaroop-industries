@@ -5,13 +5,23 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination as SwiperPagination } from "swiper/modules";
-import { 
-  productCategories, 
+import {
+  productCategories,
   getCategoryBySlug,
   getProductBySlug,
 } from "@/config/products.config";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Package, Phone } from "lucide-react";
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  Package, 
+  Phone, 
+  PlugZap, 
+  Zap, 
+  Wrench, 
+  Link2, 
+  Settings 
+} from "lucide-react";
 import ProductDetailView from "@/components/products/ProductDetailView";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import styles from "./page.module.scss";
@@ -28,22 +38,31 @@ interface PageProps {
 
 export default function ProductPage({ params }: PageProps) {
   const slug = params.slug;
-  
+
   // First, check if it's a category
   const category = getCategoryBySlug(slug);
-  
+
   if (category) {
     // Get featured products in this category
-    const featuredProducts = category.products.filter(p => p.featured).slice(0, 4);
-    
+    const featuredProducts = category.products
+      .filter((p) => p.featured)
+      .slice(0, 4);
+
     // Render category page with all its products
     return (
       <div className={styles.categoryPage}>
         {/* Category Hero */}
-        <section className={`${styles.hero} ${category.image ? styles.heroWithImage : ''}`}>
+        <section
+          className={`${styles.hero} ${
+            category.image ? styles.heroWithImage : ""
+          }`}
+        >
           <div className={styles.heroBackground}>
             {category.image && (
-              <div className={styles.heroImage} style={{ backgroundImage: `url(${category.image})` }} />
+              <div
+                className={styles.heroImage}
+                style={{ backgroundImage: `url(${category.image})` }}
+              />
             )}
             <div className={styles.heroOverlay} />
             <div className={styles.heroGlow} />
@@ -55,8 +74,8 @@ export default function ProductPage({ params }: PageProps) {
               transition={{ duration: 0.6 }}
               className={styles.heroContent}
             >
-              <TypingAnimation 
-                text={category.name} 
+              <TypingAnimation
+                text={category.name}
                 duration={50}
                 className={styles.title}
                 as="h1"
@@ -84,33 +103,58 @@ export default function ProductPage({ params }: PageProps) {
             <div className="container mx-auto px-4 py-8">
               <div className={styles.subcategoriesHeader}>
                 <h2 className={styles.sectionTitle}>Browse by Subcategory</h2>
-                <p className={styles.sectionDesc}>Explore our specialized {category.name.toLowerCase()} products</p>
+                <p className={styles.sectionDesc}>
+                  Explore our specialized {category.name.toLowerCase()} products
+                </p>
               </div>
               <div className={styles.subcategoriesGrid}>
-                {category.subcategories.map((sub, index) => (
-                  <motion.a
-                    key={sub.id}
-                    href={`/products?category=${category.slug}&subcategory=${sub.slug}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className={styles.subcategoryCard}
-                  >
-                    <div className={styles.subcategoryIcon}>
-                      {index % 5 === 0 ? '🔌' : index % 5 === 1 ? '⚡' : index % 5 === 2 ? '🔧' : index % 5 === 3 ? '🔗' : '⚙️'}
-                    </div>
-                    <div className={styles.subcategoryContent}>
-                      <h3 className={styles.subcategoryName}>{sub.name}</h3>
-                      <p className={styles.subcategoryDesc}>{sub.description}</p>
-                      <div className={styles.subcategoryFooter}>
-                        <span className={styles.subcategoryCount}>
-                          {sub.products.length} Products
-                        </span>
-                        <ArrowRight className={styles.subcategoryArrow} />
+                {category.subcategories.map((sub, index) => {
+                  // Get appropriate icon based on index
+                  const getSubcategoryIcon = () => {
+                    const icons = [
+                      PlugZap,
+                      Zap,
+                      Wrench,
+                      Link2,
+                      Settings
+                    ];
+                    return icons[index % 5];
+                  };
+                  
+                  const IconComponent = getSubcategoryIcon();
+                  
+                  return (
+                    <motion.div
+                      key={sub.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                    >
+                      <Link
+                        href={`/products?category=${category.slug}&subcategory=${sub.slug}`}
+                        className={styles.subcategoryCard}
+                      >
+                        <div className={styles.subcategoryIcon}>
+                          <IconComponent className={styles.subcategoryIconSvg} />
+                        </div>
+
+                      <div className={styles.subcategoryContent}>
+                        <h3 className={styles.subcategoryName}>{sub.name}</h3>
+                        <p className={styles.subcategoryDesc}>
+                          {sub.description}
+                        </p>
+
+                        <div className={styles.subcategoryFooter}>
+                          <span className={styles.subcategoryCount}>
+                            {sub.products.length} Products
+                          </span>
+                          <ArrowRight className={styles.subcategoryArrow} />
+                        </div>
                       </div>
-                    </div>
-                  </motion.a>
-                ))}
+                    </Link>
+                  </motion.div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -120,7 +164,9 @@ export default function ProductPage({ params }: PageProps) {
         {featuredProducts.length > 0 && (
           <section className={styles.featuredSection}>
             <div className="container mx-auto px-4 py-12">
-              <h2 className={styles.sectionTitle}>⭐ Featured {category.name}</h2>
+              <h2 className={styles.sectionTitle}>
+                ⭐ Featured {category.name}
+              </h2>
               <div className={styles.featuredGrid}>
                 {featuredProducts.map((product, index) => (
                   <motion.div
@@ -130,29 +176,47 @@ export default function ProductPage({ params }: PageProps) {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
-                    <Link href={`/products/${product.slug}`} className={styles.featuredCard}>
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className={styles.featuredCard}
+                    >
                       <div className={styles.featuredImage}>
                         {(() => {
                           // Get image from product or first variant
                           let imageUrl = product.image;
-                          
-                          if (!imageUrl && product.images && product.images.length > 0) {
+
+                          if (
+                            !imageUrl &&
+                            product.images &&
+                            product.images.length > 0
+                          ) {
                             imageUrl = product.images[0];
                           }
-                          
-                          if (!imageUrl && product.variants && product.variants.length > 0) {
+
+                          if (
+                            !imageUrl &&
+                            product.variants &&
+                            product.variants.length > 0
+                          ) {
                             const firstVariant = product.variants[0];
-                            if (firstVariant.images && firstVariant.images.length > 0) {
+                            if (
+                              firstVariant.images &&
+                              firstVariant.images.length > 0
+                            ) {
                               imageUrl = firstVariant.images[0];
                             }
                           }
-                          
+
                           return imageUrl ? (
-                            <img 
-                              src={imageUrl} 
+                            <img
+                              src={imageUrl}
                               alt={product.name}
                               className={styles.featuredProductImage}
-                              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "contain",
+                              }}
                             />
                           ) : (
                             <span className={styles.productIcon}>📦</span>
@@ -163,14 +227,20 @@ export default function ProductPage({ params }: PageProps) {
                       <div className={styles.featuredContent}>
                         <h3 className={styles.featuredName}>{product.name}</h3>
                         {product.partNumber && (
-                          <p className={styles.featuredCode}>Code: {product.partNumber}</p>
+                          <p className={styles.featuredCode}>
+                            Code: {product.partNumber}
+                          </p>
                         )}
                         {product.variants && product.variants.length > 0 && (
                           <div className={styles.variantInfo}>
                             {product.variants.length} variants available
                           </div>
                         )}
-                        <Button variant="ghost" size="sm" className={styles.featuredBtn}>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className={styles.featuredBtn}
+                        >
                           View Details <ArrowRight className="ml-1 h-4 w-4" />
                         </Button>
                       </div>
@@ -181,7 +251,6 @@ export default function ProductPage({ params }: PageProps) {
             </div>
           </section>
         )}
-
 
         {/* All Products Grid */}
         <section className={styles.products}>
@@ -203,21 +272,33 @@ export default function ProductPage({ params }: PageProps) {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.4) }}
+                    transition={{
+                      duration: 0.4,
+                      delay: Math.min(index * 0.05, 0.4),
+                    }}
                   >
-                    <Link href={`/products/${product.slug}`} className={styles.productCard}>
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className={styles.productCard}
+                    >
                       <div className={styles.productImageWrapper}>
                         {(() => {
                           // Handle both images array and single image
                           // Also check variant images if no main product image
-                          let imageList = product.images || (product.image ? [product.image] : []);
-                          
+                          let imageList =
+                            product.images ||
+                            (product.image ? [product.image] : []);
+
                           // If no images on main product, check first variant
-                          if (imageList.length === 0 && product.variants && product.variants.length > 0) {
+                          if (
+                            imageList.length === 0 &&
+                            product.variants &&
+                            product.variants.length > 0
+                          ) {
                             const firstVariant = product.variants[0];
                             imageList = firstVariant.images || [];
                           }
-                          
+
                           return imageList.length > 1 ? (
                             <Swiper
                               modules={[SwiperPagination]}
@@ -229,8 +310,8 @@ export default function ProductPage({ params }: PageProps) {
                               {imageList.map((image, imgIndex) => (
                                 <SwiperSlide key={imgIndex}>
                                   <div className={styles.productImage}>
-                                    <img 
-                                      src={image} 
+                                    <img
+                                      src={image}
                                       alt={`${product.name} - ${imgIndex + 1}`}
                                       className={styles.productImageImg}
                                     />
@@ -240,8 +321,8 @@ export default function ProductPage({ params }: PageProps) {
                             </Swiper>
                           ) : imageList.length === 1 ? (
                             <div className={styles.productImage}>
-                              <img 
-                                src={imageList[0]} 
+                              <img
+                                src={imageList[0]}
                                 alt={product.name}
                                 className={styles.productImageImg}
                               />
@@ -264,15 +345,19 @@ export default function ProductPage({ params }: PageProps) {
                       <div className={styles.productContent}>
                         <h3 className={styles.productName}>{product.name}</h3>
                         {product.partNumber && (
-                          <p className={styles.partNumber}>Code: {product.partNumber}</p>
+                          <p className={styles.partNumber}>
+                            Code: {product.partNumber}
+                          </p>
                         )}
                         <p className={styles.productDescription}>
-                          {product.description.length > 100 
-                            ? `${product.description.slice(0, 100)}...` 
+                          {product.description.length > 100
+                            ? `${product.description.slice(0, 100)}...`
                             : product.description}
                         </p>
                         {product.subcategory && (
-                          <span className={styles.subcategoryTag}>{product.subcategory}</span>
+                          <span className={styles.subcategoryTag}>
+                            {product.subcategory}
+                          </span>
                         )}
                         <span className={styles.viewDetails}>
                           View Details
@@ -312,7 +397,10 @@ export default function ProductPage({ params }: PageProps) {
               className={styles.ctaContent}
             >
               <h2>Need Custom {category.name}?</h2>
-              <p>Contact us for bulk orders, custom specifications, or technical support.</p>
+              <p>
+                Contact us for bulk orders, custom specifications, or technical
+                support.
+              </p>
               <div className={styles.ctaButtons}>
                 <Button asChild size="lg">
                   <Link href="/inquiry">
@@ -336,16 +424,16 @@ export default function ProductPage({ params }: PageProps) {
 
   // If not a category, check if it's a product
   const product = getProductBySlug(slug);
-  
+
   if (product) {
     // Find the category for breadcrumb
-    const productCategory = productCategories.find(
-      cat => cat.products.some(p => p.id === product.id)
+    const productCategory = productCategories.find((cat) =>
+      cat.products.some((p) => p.id === product.id)
     );
 
     // Get related products
     const relatedProducts = productCategory
-      ? productCategory.products.filter(p => p.id !== product.id).slice(0, 4)
+      ? productCategory.products.filter((p) => p.id !== product.id).slice(0, 4)
       : [];
 
     return (

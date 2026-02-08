@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination as SwiperPagination, Navigation } from "swiper/modules";
 import { Product, ProductCategory } from "@/config/products.config";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Info, Phone, ShoppingBag, Check } from "lucide-react";
+import { ArrowRight, Info, Phone, ShoppingBag, Check } from "lucide-react";
 import VariantSelector from "./VariantSelector";
 import { useCart } from "@/contexts/CartContext";
 import styles from "./ProductDetailView.module.scss";
@@ -49,7 +49,7 @@ export default function ProductDetailView({
     <div className={styles.productPage}>
       {/* Product Details */}
       <section className={styles.productDetails}>
-        <div className="container mx-auto px-4 py-6">
+        <div className={`${styles.container} ${styles.containerSmall}`}>
           <div className={styles.productLayout}>
             {/* Product Image Gallery */}
             <motion.div
@@ -198,7 +198,7 @@ export default function ProductDetailView({
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <section className={styles.relatedProducts}>
-          <div className="container mx-auto px-4 py-16">
+          <div className={`${styles.container} ${styles.containerLarge}`}>
             <h2 className={styles.sectionTitle}>Related Products</h2>
             <div className={styles.relatedGrid}>
               {relatedProducts.map((relatedProduct, index) => {
@@ -231,7 +231,6 @@ export default function ProductDetailView({
                           <img 
                             src={imageUrl} 
                             alt={relatedProduct.name}
-                            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                           />
                         ) : (
                           <span>📦</span>
@@ -256,7 +255,7 @@ export default function ProductDetailView({
 
       {/* CTA */}
       <section className={styles.cta}>
-        <div className="container mx-auto px-4 py-16">
+        <div className={`${styles.container} ${styles.containerLarge}`}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
